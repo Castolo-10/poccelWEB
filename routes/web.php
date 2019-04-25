@@ -23,12 +23,16 @@ Route::get('/forgot-password', function () {
     return View::make('forgot');
 });
 
+Route::get('/reset-password', function () {
+    return View::make('reset');
+});
+
 Route::get('/catalog', function () {
     return View::make('catalog');
 });
 
 Route::get('/my-account', function () {
-    return View::make('account', [ '_site'=> 'details' ]);
+    return View::make('account');
 });
 
 ?>

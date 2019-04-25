@@ -10,7 +10,7 @@
         <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">Información personal</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="address-tab" data-toggle="tab" href="#address" role="tab" aria-controls="address" aria-selected="false">Dirección</a>
+        <a class="nav-link" id="security-tab" data-toggle="tab" href="#security" role="tab" aria-controls="security" aria-selected="false">Seguridad</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" id="history-tab" data-toggle="tab" href="#history" role="tab" aria-controls="history" aria-selected="false">Estado de Cuenta</a>
@@ -18,10 +18,26 @@
     </ul>
     <div class="tab-content" id="myTabContent">
       <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-        {% include 'partials.profile-form' %}
+        <div class="card border-gray mt-2">
+          <div class="card-header h5">Datos personales</div>
+          <div class="card-body">
+            {% include 'partials.profile-form' %}
+          </div>
+        </div>
+        <div class="card border-gray mt-2">
+          <div class="card-header h5">Dirección</div>
+          <div class="card-body">
+            {% include 'partials.address-form' %}
+          </div>
+        </div>
       </div>
-      <div class="tab-pane fade" id="address" role="tabpanel" aria-labelledby="address-tab">
-        {% include 'partials.address-form' %}
+      <div class="tab-pane fade" id="security" role="tabpanel" aria-labelledby="security-tab">
+        <div class="card border-gray mt-2">
+          <div class="card-header h5">Cambiar contraseña</div>
+          <div class="card-body">
+          {% include 'partials.security-form' %}
+          </div>
+        </div>
       </div>
       <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">...</div>
     </div>
