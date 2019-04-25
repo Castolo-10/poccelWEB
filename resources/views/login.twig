@@ -1,0 +1,11 @@
+{% extends "base" %}
+{% set _form = {
+  'header': 'Iniciar Sesión',
+  'title': 'Ingresa con tu correo electrónico.'
+  } %}
+
+{% block title %}{{ _form.header }}{% endblock %}
+
+{% block content %}
+  {% include 'partials.login-form' %}
+{% endblock %}

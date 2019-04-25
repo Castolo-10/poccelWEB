@@ -1,0 +1,46 @@
+{% set user={
+  'address' : {
+    'cp_code' : '40000',
+    'state' : 'Jalisco',
+    'city' : 'Guadalajara',
+    'street' : 'Calle uno',
+    'num' : '123',
+    'int' : '0'
+  },
+} %}
+
+<form>
+  <fieldset disabled="disabled">
+
+  <div class="form-row mt-2">
+    <div class="col-md-4 mb-2">
+      <label for="cp-code">Código postal</label>
+      <input type="text" class="form-control" id="cp-code" value="{{ user.address.cp_code | e }}">
+    </div>
+    <div class="col-md-4 mb-2">
+      <label for="f-lastname">Estado/Provincia</label>
+      <input type="text" class="form-control" id="state" value="{{ user.address.state | e }}">
+    </div>
+    <div class="col-md-4 mb-2">
+      <label for="m-lastname">Ciudad</label>
+      <input type="text" class="form-control" id="city" value="{{ user.address.city | e }}">
+    </div>
+  </div>
+
+  <div class="form-row mt-2">
+    <div class="col-md-6 mb-2">
+      <label for="cp-code">Calle</label>
+      <input type="text" class="form-control" id="street" value="{{ user.address.street | e }}">
+    </div>
+    <div class="col-md-3 mb-2">
+      <label for="f-lastname">Número exterior</label>
+      <input type="text" class="form-control" id="num" value="{{ user.address.num | e }}">
+    </div>
+    <div class="col-md-3 mb-2">
+      <label for="m-lastname">Número interior</label>
+      <input type="text" class="form-control" id="int-num" value="{{ user.address.int | e }}">
+    </div>
+  </div>
+
+  </fieldset>
+</form>

@@ -1,0 +1,15 @@
+{% set _paging = {
+  'current': 3,
+  'lim': {
+  'min': 1,
+  'max': 7
+  }
+} %}
+
+<ul class="pagination pagination-sm justify-content-center mb-3">
+  <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-left"></i></a></li>
+  {% for i in _paging.lim.min.._paging.lim.max %}
+    <li class="page-item {{ i == _paging.current? 'active' : '' }}"><a class="page-link" href="#">{{ i }}</a></li>
+  {% endfor %}
+  <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-right"></i></a></li>
+</ul>

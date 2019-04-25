@@ -1,0 +1,11 @@
+{% extends 'partials.mid-form' %}
+
+{% block form %}
+  <div class="input-group mb-2">
+    <div class="input-group-prepend">
+      <label for="email" class="input-group-text"><i class="far fa-envelope fa-lg"></i></label>
+    </div>
+    <input type="email" class="form-control" placeholder="Correo electrónico" id="email" required>
+  </div>
+  <button class="btn btn-primary btn-block">Enviar</button>
+{% endblock %}

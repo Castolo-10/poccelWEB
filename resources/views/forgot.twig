@@ -1,0 +1,11 @@
+{% extends "base" %}
+{% set _form = {
+  'header': 'Recuperar contraseña',
+  'title': 'Escribe tu correo electrónico y te enviaremos un enlace para que cambies tu contraseña.',
+  } %}
+
+{% block title %}{{ _form.header }}{% endblock %}
+
+{% block content %}
+  {% include 'partials.forgot-form' %}
+{% endblock %}
