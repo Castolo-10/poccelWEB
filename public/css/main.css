@@ -71,9 +71,19 @@ a.more::after {
   margin: .5em 0;
 }
 
+.item-container .card:hover {
+  transition: box-shadow linear 400ms;
+  box-shadow: 0px 3px 5px rgba(0,0,0,.2)
+}
+
 .item-container .card img {
   height: 170px;
   object-fit: cover;
+}
+
+.modal .img-fluid {
+  width: 100%;
+  height: auto;
 }
 
 @media screen and (max-width: 576px) {
@@ -82,7 +92,7 @@ a.more::after {
   }
 }
 
-.item-container .price {
+.price {
   color: #eb0042;
   font-weight: 700;
 }

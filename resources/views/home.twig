@@ -47,7 +47,7 @@
     <div class="row item-container justify-content-between">
       {% for product in products %}
       <div class="col-sm-6 col-lg-4">
-        <div class="card">
+        <div class="card" data-toggle="modal" data-target="#productModal" data-product-id="{{ product.id }}">
           <img class="card-img-top img-fluid" src="data:image/png;base64, {{ product.img }}" />
           <div class="card-body pb-0 text-center">
             <h5 class="card-title">{{ product.name | e }}</h5>
@@ -62,4 +62,31 @@
       {% endfor %}
     </div>
   </div>
+
+  <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="pModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="badge badge-pill badge-success" id="pModalStatus">&nbsp;</div>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="col-10 m-auto text-center">
+            <h5 class="modal-title mb-2" id="pModalTitle"></h5>
+            <img id="pModalImage" class="img-fluid" src="..." alt="Imagen del producto" />
+            <p class="modal-text price my-2">$ <span id="pModalPrice"></span></p>
+            <hr/>
+            <p class="modal-text my-2"><span id="pModalDescription"></span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  {{ parent() }}
+  <script src="/js/main.js"></script>
 {% endblock %}
