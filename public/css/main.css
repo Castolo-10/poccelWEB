@@ -13,6 +13,15 @@ main {
   margin-top: 5em;
 }
 
+footer.page-footer {
+  background-color: var(--secondary);
+  color: rgba(255,255,255,.7);
+}
+
+footer.page-footer a {
+  color: #fff;
+}
+
 #search-toggle::before, a.more::after {
   font-family: "Font Awesome 5 Free";
   vertical-align: middle;
