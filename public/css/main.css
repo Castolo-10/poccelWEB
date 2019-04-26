@@ -13,27 +13,67 @@ main {
   margin-top: 5em;
 }
 
+#search-toggle::before, a.more::after {
+  font-family: "Font Awesome 5 Free";
+  vertical-align: middle;
+  font-weight: 900;
+  font-size: 1em;
+}
+
+#search-toggle {
+  background-color: transparent;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  transition: border linear 0.2s;
+  -webkit-transition: border linear 0.2s;
+  -moz-transition: border linear 0.2s;
+  -o-transition:
+}
+
+#search-toggle:hover {
+  color: var(--indigo);
+  border-color: var(--indigo);
+}
+
+#search-toggle[aria-expanded="false"]::before {
+  content: "\f002";
+}
+
+#search-toggle[aria-expanded="true"]::before {
+  padding: .16em;
+  content: "\f00d";
+}
+
+a.more {
+  text-decoration: none;
+}
+
+a.more::after {
+  content: "\f105";
+  padding-left: .4em;
+}
+
 /* catalogo */
 .item-container .card-title {
   font-variant: small-caps;
 }
 
-.item-card {
+.item-container .card {
   margin: .5em 0;
 }
 
-.img-item {
-  height: 150px;
+.item-container .card img {
+  height: 170px;
   object-fit: cover;
 }
 
 @media screen and (max-width: 576px) {
-  .img-item {
-    height: 230px;
+  .item-container .card img {
+    height: auto;
   }
 }
 
-.item-price {
+.item-container .price {
   color: #eb0042;
   font-weight: 700;
 }
