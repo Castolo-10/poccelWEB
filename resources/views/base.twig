@@ -10,13 +10,11 @@
     {% endblock %}
   </head>
   <body>
-    <header id="header">
-      {% include 'partials.navbar' %}
-    </header>
+    <header id="header">{% include 'partials.navbar' %}</header>
 
     <main role="main">{% block content %}{% endblock %}</main>
 
-    <footer class="page-footer mt-3">
+    <footer role="footer" class="page-footer mt-3">
       {% block footer %}
         <div class="text-center py-3">
           &copy; 2019 Copyright: <a href="/" class="link" >Poccel Team</a>
