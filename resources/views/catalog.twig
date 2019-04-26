@@ -13,21 +13,20 @@
 
 {% block content %}
   <div class="col-sm-12 col-md-10 col-lg-8 m-auto">
-    {# <p class="h5 text-center">Catálogo</p> #}
+    {# <p class="h5 text-center">Catálogo</p> <hr />#}
     {% include 'partials.catalog-options' %}
 
     <div class="row item-container justify-content-between">
 
     {% for item in products %}
     <div class="col-sm-6 col-lg-4">
-      <div class="card item-card">
-        <img class="card-img-top img-item img-fluid" src="data:image/png;base64, {{ item.img }}" />
+      <div class="card">
+        <img class="card-img-top img-fluid" src="data:image/png;base64, {{ item.img }}" />
         <div class="card-body pb-0 text-center">
           <h5 class="card-title">{{ item.name | e }}</h5>
         </div>
         <div class="card-footer text-center">
-          <p class="card-text item-price">$ {{ item.price | e }}</p>
-          <!--button class="btn btn-outline-success btn-sm float-right"><i class="fas fa-cart-plus"></i></button-->
+          <p class="card-text price">$ {{ item.price | e }}</p>
         </div>
       </div>
     </div>
