@@ -4,6 +4,14 @@ window.onload = () => {
 
 let init = () => {
   productsOnClick();
+  extendedMain();
+  }
+
+let extendedMain = () => {
+  let sToggle = document.getElementById('search-toggle');
+  sToggle.addEventListener('click', () => {
+    document.querySelector('main').classList.toggle('extended');
+    });
   }
 
 let productsOnClick = () => {
