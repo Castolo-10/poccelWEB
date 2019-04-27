@@ -64,3 +64,8 @@
   </div>
 
 {% endblock %}
+
+{% block scripts %}
+  {{ parent() }}
+  <script src="{{ asset('js/products.js') }}"></script>
+{% endblock %}
