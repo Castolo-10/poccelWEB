@@ -1,6 +1,7 @@
 {% set user={
   'account' : {
     'id': '12345',
+    'expire': '1990-02-09',
     'balance': {
       'total': '150',
       'details': [
@@ -15,54 +16,114 @@
 <form>
   <fieldset disabled="disabled">
 
-  <div class="form-row mt-2">
-    <div class="col-md-8 mb-2">
+  <div class="form-row">
+    <div class="col-md-5">
       <label for="account-id">Número de cuenta</label>
       <input type="text" class="form-control" id="account-id" value="{{ user.account.id }}">
     </div>
-    <div class="col-md-4 mb-2">
+    <div class="col-md-3">
+      <label for="expire">Fecha de corte</label>
+      <input type="date" class="form-control" id="expire" value="{{ user.account.expire }}">
+    </div>
+    <div class="col-md-4">
       <label for="account-balance">Total a pagar</label>
-      <input type="text" class="form-control" id="account-balance" value="$ {{ user.account.balance.total | e }}">
+      <input type="text" class="form-control" id="account-balance" value="$ {{ user.account.balance.total }}">
     </div>
   </div>
 
   </fieldset>
 </form>
 
-  <div class="form-row mx-1 mb-2 mt-5 justify-content-between">
-    <span class="h5">Detalles de la cuenta</span>
-    <button class="btn btn-outline-secondary btn-sm"><i class="fa fa-credit-card mr-2"></i>Pagar</button>
-  </div>
+<div class="form-row mx-1 mb-2 mt-5 justify-content-between">
+  <span class="h5">Detalles de la cuenta</span>
+  <button class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#payModal">
+    <i class="fa fa-credit-card mr-2"></i>Pagar
+  </button>
+</div>
 
-  <div class="form-row mb-3 table-responsive">
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th scope="col">Cuenta</th>
-          <th scope="col">Concepto</th>
-          <th scope="col">Adeudo</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for a in user.account.balance.details %}
-        <tr>
-          <th scope="row">{{ a.id }}</th>
-          <td>{{ a.name }}</td>
-          <td>$ {{ a.total }}</td>
-          <td>
-            <div class="btn-group">
-              <button type="button" class="btn btn-outline-primary btn-sm"><i class="fa fa-info-circle"></i></button>
-              <button type="button" class="btn btn-outline-secondary btn-sm"><i class="fa fa-credit-card"></i></button>
+<div class="form-row table-responsive">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Cuenta</th>
+        <th scope="col">Concepto</th>
+        <th scope="col">Adeudo</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for a in user.account.balance.details %}
+      <tr>
+        <th scope="row">{{ a.id }}</th>
+        <td>{{ a.name }}</td>
+        <td>$ {{ a.total }}</td>
+        <td>
+          <div class="btn-group">
+            <button type="button" class="btn btn-outline-primary btn-sm"><i class="fa fa-info-circle"></i></button>
+            <button type="button" class="btn btn-outline-secondary btn-sm"><i class="fa fa-credit-card"></i></button>
+          </div>
+        </td>
+      </tr>
+      {% else %}
+      <tr class="col-12 text-center">
+        <td colspan="4">No debe ningún producto</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<div class="modal fade" id="payModal" tabindex="-1" role="dialog" aria-labelledby="payModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="payModalTitle">
+          <span class="ml-4">
+            <i class="fab fa-cc-visa"></i>
+            <i class="fab fa-cc-mastercard"></i>
+            <i class="fab fa-cc-discover"></i>
+          </span>
+          <span>Tarjeta de crédito o débito</span>
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body pt-0 mx-3">
+        <form>
+          <div class="form-row">
+            <div class="form-group col-12 my-0">
+              <label for="cc-titular">Nombre del titular</label>
+              <input type="text" class="form-control" id="cc-titular" required>
             </div>
-          </td>
-        </tr>
-        {% else %}
-        <tr class="col-12 text-center">
-          <td colspan="4">No ha adquirido productos</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-12 my-0">
+              <label for="cc-number">Número de tarjeta</label>
+              <input type="text" class="form-control" id="cc-number" required>
+            </div>
+          </div>
+          <div class="form-row justify-content-between">
+            <div class="form-group col-7 my-0">
+              <label for="cc-exp">Fecha de expiración</label>
+              <input type="month" class="form-control" id="cc-exp" min="2019-03" required>
+            </div>
+            <div class="form-group col-5">
+              <label for="cc-code">Código de seguridad</label>
+              <input text="number" class="form-control" id="cc-code" placeholder="3 dígitos" required>
+            </div>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="cc-save">
+            <label class="form-check-label" for="cc-save">Autorizo guardar este método de pago</label>
+          </div>
+          <hr/>
+          <div class="form-row d-flex justify-content-end">
+            <button class="btn btn-primary btn-sm col-sm-6 "><i class="fa fa-credit-card mr-2"></i>Pagar</button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
+</div>
 
