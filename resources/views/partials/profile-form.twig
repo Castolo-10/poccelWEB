@@ -13,15 +13,15 @@
   <fieldset disabled="disabled">
 
   <div class="form-row">
-    <div class="col-md-4 mb-2">
+    <div class="col-md-4">
       <label for="name">Nombre(s)</label>
       <input type="text" class="form-control" id="name" value="{{ user.name | e }}">
     </div>
-    <div class="col-md-4 mb-2">
+    <div class="col-md-4">
       <label for="f-lastname">Apellido Paterno</label>
       <input type="text" class="form-control" id="f-lastname" value="{{ user.f_lastname | e }}">
     </div>
-    <div class="col-md-4 mb-2">
+    <div class="col-md-4">
       <label for="m-lastname">Apellido Materno</label>
       <input type="text" class="form-control" id="m-lastname" value="{{ user.m_lastname | e }}">
     </div>
@@ -46,19 +46,19 @@
     </div>
   </div>
 
-  <div class="form-row mb-2">
+  <div class="form-row">
     <div class="form-group col-12">
-      <input type="text" class="form-control-plaintext" value="Fecha de nacimiento">
-      <input id="b-date" readonly type="date" class="form-control" value="{{ user.b_date }}">
+      <label for="b-date"> Fecha de nacimiento</label>
+      <input id="b-date" type="date" class="form-control" value="{{ user.b_date }}">
     </div>
   </div>
 
-  <div class="form-row mt-2">
-    <div class="col-md-6 mb-2">
+  <div class="form-row">
+    <div class="col-md-6">
       <label for="phone">Teléfono fijo</label>
       <input type="text" class="form-control" id="phone" value="{{ user.phone | e }}">
     </div>
-    <div class="col-md-6 mb-2">
+    <div class="col-md-6">
       <label for="cellphone">Teléfono celular</label>
       <input type="text" class="form-control" id="cellphone" value="{{ user.cellphone | e }}">
     </div>

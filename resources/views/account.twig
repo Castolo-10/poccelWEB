@@ -19,23 +19,23 @@
         <a class="flex-sm-fill text-sm-center nav-link" id="security-tab" data-toggle="tab" href="#security" role="tab" aria-controls="security" aria-selected="false">Seguridad</a>
       </li>
     </ul>
-    <div class="tab-content" id="myTabContent">
+    <div class="tab-content mt-2" id="myAccount">
       <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-        <div class="card border-gray mt-2">
+        <div class="card border-gray">
           <div class="card-header h5">Datos personales</div>
-          <div class="card-body">
+          <div class="card-body pt-0">
             {% include 'partials.profile-form' %}
           </div>
         </div>
         <div class="card border-gray mt-2">
           <div class="card-header h5">Dirección</div>
-          <div class="card-body">
+          <div class="card-body pt-0">
             {% include 'partials.address-form' %}
           </div>
         </div>
       </div>
       <div class="tab-pane fade" id="security" role="tabpanel" aria-labelledby="security-tab">
-        <div class="card border-gray mt-2">
+        <div class="card border-gray">
           <div class="card-header h5">Cambiar contraseña</div>
           <div class="card-body">
           {% include 'partials.security-form' %}
@@ -43,15 +43,15 @@
         </div>
       </div>
       <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">
-        <div class="card border-gray mt-2">
+        <div class="card border-gray">
           <div class="card-header h5">Resumen de la cuenta</div>
-          <div class="card-body">
+          <div class="card-body pt-0">
           {% include 'partials.history-form' %}
           </div>
         </div>
       </div>
       <div class="tab-pane fade" id="paid-method" role="tabpanel" aria-labelledby="paid-method-tab">
-        <div class="card border-gray mt-2">
+        <div class="card border-gray">
           <div class="card-body">
             Metodos de pago
           </div>

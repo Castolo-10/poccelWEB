@@ -9,6 +9,10 @@ body {
   background-color: #eee;
 }
 
+.navbar {
+  opacity: 0.8;
+}
+
 main {
   margin-top: 5em;
   transition: margin linear 0.25s;
@@ -108,3 +112,18 @@ a.more::after {
   font-weight: 700;
 }
 
+/* mi cuenta */
+#myAccount input[type="text"], #profile input[type="date"]{
+  padding-top: .6em;
+}
+
+#myAccount label:not(.form-check-label):not(.input-group-text) {
+  font-size: .65em;
+  color: white;
+  padding: .15em .65em;
+  border-radius: 2px;
+  background-color: rgba(128,128,128,.7);
+  position: relative;
+  top: 15px;
+  left: 10px;
+}
