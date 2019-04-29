@@ -9,8 +9,8 @@ body {
   background-color: #eee;
 }
 
-.navbar {
-  opacity: 0.8;
+.navbar-laravel {
+  background-color: rgba(255,255,255,0.7);
 }
 
 main {
@@ -127,4 +127,17 @@ a.more::after {
   position: relative;
   top: 15px;
   left: 10px;
+}
+
+/* home */
+
+#carouselOffers img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+.slide-title, .slide-text {
+  background-color: rgba(52,144,220,0.8);
+  border-radius: 3px;
 }
