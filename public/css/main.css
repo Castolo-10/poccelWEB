@@ -28,8 +28,6 @@ main.extended {
 footer.page-footer {
   background-color: var(--secondary);
   color: rgba(255,255,255,.7);
-  position: relative;
-  bottom: 0;
 }
 
 footer.page-footer a {
@@ -113,7 +111,10 @@ a.more::after {
 }
 
 /* mi cuenta */
-#myAccount input[type="text"], #profile input[type="date"]{
+#myAccount input[type="text"],
+#myAccount input[type="date"],
+#myAccount input[type="month"]
+{
   padding-top: .6em;
 }
 
