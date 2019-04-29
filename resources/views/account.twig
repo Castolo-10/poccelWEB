@@ -22,13 +22,13 @@
     <div class="tab-content mt-2" id="myAccount">
       <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
         <div class="card border-gray">
-          <div class="card-header h5">Datos personales</div>
+          <h5 class="card-header">Datos personales</h5>
           <div class="card-body pt-0">
             {% include 'partials.form.profile' %}
           </div>
         </div>
         <div class="card border-gray mt-2">
-          <div class="card-header h5">Dirección</div>
+          <h5 class="card-header">Dirección</h5>
           <div class="card-body pt-0">
             {% include 'partials.form.address' %}
           </div>
@@ -36,7 +36,7 @@
       </div>
       <div class="tab-pane fade" id="security" role="tabpanel" aria-labelledby="security-tab">
         <div class="card border-gray">
-          <div class="card-header h5">Cambiar contraseña</div>
+          <h5 class="card-header">Cambiar contraseña</h5>
           <div class="card-body">
           {% include 'partials.form.security' %}
           </div>
@@ -44,7 +44,7 @@
       </div>
       <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">
         <div class="card border-gray">
-          <div class="card-header h5">Resumen de la cuenta</div>
+          <h5 class="card-header">Resumen de la cuenta</h5>
           <div class="card-body pt-0">
           {% include 'partials.form.history' %}
           {% include 'partials.modal.cc-payment' %}
@@ -53,8 +53,9 @@
       </div>
       <div class="tab-pane fade" id="paid-method" role="tabpanel" aria-labelledby="paid-method-tab">
         <div class="card border-gray">
-          <div class="card-body">
-            Metodos de pago
+          <h5 class="card-header">Tarjetas vinculadas</h5>
+          <div class="card-body pt-0">
+            {% include 'partials.form.cc_table' %}
           </div>
         </div>
       </div>
