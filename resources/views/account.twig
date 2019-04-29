@@ -24,13 +24,13 @@
         <div class="card border-gray">
           <div class="card-header h5">Datos personales</div>
           <div class="card-body pt-0">
-            {% include 'partials.profile-form' %}
+            {% include 'partials.form.profile' %}
           </div>
         </div>
         <div class="card border-gray mt-2">
           <div class="card-header h5">Dirección</div>
           <div class="card-body pt-0">
-            {% include 'partials.address-form' %}
+            {% include 'partials.form.address' %}
           </div>
         </div>
       </div>
@@ -38,7 +38,7 @@
         <div class="card border-gray">
           <div class="card-header h5">Cambiar contraseña</div>
           <div class="card-body">
-          {% include 'partials.security-form' %}
+          {% include 'partials.form.security' %}
           </div>
         </div>
       </div>
@@ -46,7 +46,8 @@
         <div class="card border-gray">
           <div class="card-header h5">Resumen de la cuenta</div>
           <div class="card-body pt-0">
-          {% include 'partials.history-form' %}
+          {% include 'partials.form.history' %}
+          {% include 'partials.modal.cc-payment' %}
           </div>
         </div>
       </div>
