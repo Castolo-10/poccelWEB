@@ -1,0 +1,26 @@
+{% extends "base" %}
+
+{% block title %}Catálogo{% endblock %}
+
+{% block content %}
+  <div class="col-11 m-auto">
+
+    {% include 'partials.catalog-options' %}
+
+    {% include 'partials.products' %}
+
+    <div class="row">
+      <div class="col">
+      {% include 'partials.paging' %}
+      </div>
+    </div>
+  </div>
+
+  {% include 'partials.modal.product' %}
+
+{% endblock %}
+
+{% block scripts %}
+  {{ parent() }}
+  <script src="{{ asset('js/products.js') }}"></script>
+{% endblock %}

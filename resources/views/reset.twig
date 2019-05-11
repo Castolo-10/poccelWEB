@@ -1,0 +1,11 @@
+{% extends "base" %}
+{% set _form = {
+  'header': 'Restablecer contraseña',
+  'title': 'Escribe una nueva contraseña para tu cuenta.',
+  } %}
+
+{% block title %}{{ _form.header }}{% endblock %}
+
+{% block content %}
+  {% include 'partials.form.reset' %}
+{% endblock %}

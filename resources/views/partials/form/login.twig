@@ -1,0 +1,24 @@
+{% extends 'partials.form.middle' %}
+
+{% block form %}
+  <div class="input-group mb-2">
+    <div class="input-group-prepend">
+      <label for="email" class="input-group-text"><i class="far fa-envelope fa-lg"></i></label>
+    </div>
+    <input type="email" class="form-control" placeholder="Correo electrónico" id="email" required>
+  </div>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <label for="password" class="input-group-text"><i class="fas fa-key fa-lg"></i></label>
+    </div>
+    <input type="password" class="form-control" placeholder="Contraseña" id="password" required>
+  </div>
+  <div class="form-check mb-3 mr-sm-2">
+    <input class="form-check-input" type="checkbox" id="remember-me">
+    <label class="form-check-label" for="remember-me">
+      Recuérdame
+    </label>
+    <a class="float-right" href="/forgot-password">¿Olvidaste tu contraseña?</a>
+  </div>
+  <button class="btn btn-primary btn-block">Iniciar Sesión</button>
+{% endblock %}

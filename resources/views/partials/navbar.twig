@@ -1,0 +1,54 @@
+{% set user = {'name': 'Usuario'} %}
+
+<nav class="navbar navbar-expand-sm navbar-laravel fixed-top">
+  <div class="container d-block p-0">
+    <div class="d-flex justify-content-between p-0">
+      <a class="navbar-brand navbar-left" href="/">
+        <i class="fas fa-lock" id="icon"></i>
+        Poccel
+      </a>
+
+      <div class="mt-1">
+        {% if user %}
+          <div class="btn-group">
+            <button type="button" class="btn btn-outline-primary btn-sm dropdown-toggle"  id="user-dropdown" data-toggle="dropdown" aria-haspopup="true">
+              <i class="fas fa-lg fa-user-circle"></i>
+              <span class="font-weight-bold">{{ user.name | e }}</span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right mt-0" aria-labelledby="user-dropdown">
+              <a class="dropdown-item" href="/my-account"><i class="fas fa-user">&nbsp;</i>Mi Cuenta</a>
+              <a class="dropdown-item" href="/logout"><i class="fas fa-power-off">&nbsp;</i>Cerrar Sesión</a>
+            </div>
+          </div>
+          {#<div class="dropdown">
+            <button class="btn btn-outline-primary btn-sm dropdown-toggle" id="user-dropdown" data-toggle="dropdown" aria-haspopup="true">
+              <i class="fas fa-lg fa-user-circle"></i>
+              <span class="font-weight-bold">{{ user.name | e }}</span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="user-dropdown">
+              <a class="dropdown-item" href="/my-account"><i class="fas fa-user">&nbsp;</i>Mi Cuenta</a>
+              <a class="dropdown-item" href="/logout"><i class="fas fa-power-off">&nbsp;</i>Cerrar Sesión</a>
+            </div>
+          </div>#}
+        {% else %}
+          <a href="/login" class="btn btn-outline-primary btn-sm">
+            <i class="fas fa-lg fa-sign-in-alt"></i>
+            <span class="font-weight-bold">Inicia sesión</span>
+          </a>
+        {% endif %}
+        <button id="search-toggle" class="btn btn-light btn-sm" type="button" data-toggle="collapse" data-target="#search-bar" aria-expanded="false">
+          {#<i class="fas fa-sliders-h"></i>#}
+        </button>
+      </div>
+    </div>
+
+    <div class="input-group input-group-sm mt-1 collapse" id="search-bar">
+      <input type="text" class="form-control" id="q-search" placeholder="Busca tu producto...">
+      <div class="input-group-append">
+        <button type="button" class="btn btn-outline-primary"><i class="fas fa-search"></i></button>
+      </div>
+    </div>
+
+  </div>
+</nav>
+

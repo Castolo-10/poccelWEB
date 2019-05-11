@@ -1,0 +1,16 @@
+<div class="col-md-6 col-sm-8 col-lg-5 m-auto">
+  <div class="card border-gray mb-3">
+    {% if _form.header %}
+      <div class="card-header text-center h5">{{ _form.header }}</div>
+    {% endif %}
+    <div class="card-body text-dark">
+    {% if _form.title %}
+      <div class="card-title h6">{{ _form.title }}</div>
+    {% endif %}
+    <form class="form-group">
+    {% block form %}{% endblock %}
+    </form>
+    {# include _form.partial #}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<form class="form-grup">
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <label for="cr_passwd" class="input-group-text"><i class="fas fa-key"></i></label>
+    </div>
+    <input type="password" class="form-control" placeholder="Contraseña actual" id="cr_passwd" required>
+  </div>
+
+  <hr/>
+  {% include 'partials.form.new_passwd' %}
+  <button class="btn btn-primary btn-block">Guardar cambios</button>
+
+</form>

@@ -1,0 +1,68 @@
+{% set user={
+  'name': 'my-name',
+  'f_lastname': 'f lastname',
+  'm_lastname': 'm lastname',
+  'email': 'email@email.com',
+  'b_date': '1990-06-01',
+  'sx': 'm',
+  'phone': '555-101657',
+  'cellphone': '+52 1231234210'
+  } %}
+
+<form>
+  <fieldset disabled="disabled">
+
+  <div class="form-row">
+    <div class="col-md-4">
+      <label for="name">Nombre(s)</label>
+      <input type="text" class="form-control" id="name" value="{{ user.name | e }}">
+    </div>
+    <div class="col-md-4">
+      <label for="f-lastname">Apellido Paterno</label>
+      <input type="text" class="form-control" id="f-lastname" value="{{ user.f_lastname | e }}">
+    </div>
+    <div class="col-md-4">
+      <label for="m-lastname">Apellido Materno</label>
+      <input type="text" class="form-control" id="m-lastname" value="{{ user.m_lastname | e }}">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-12">
+      <label for="email">Correo electrónico</label>
+      <input type="text" class="form-control" id="email" value="{{ user.email | e }}">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <input type="text" class="form-control-plaintext col" value="Sexo:">
+    <div class="form-check form-check-inline col">
+      <input class="form-check-input" {{ user.sx == 'm'? 'checked': '' }} type="radio" name="inlineRadioOptions" id="sx-male" value="m">
+      <label class="form-check-label" for="sx-male">Masculino</label>
+    </div>
+    <div class="form-check form-check-inline col">
+      <input class="form-check-input" {{ user.sx == 'f'? 'checked': '' }} type="radio" name="inlineRadioOptions" id="sx-female" value="f">
+      <label class="form-check-label" for="sx-female">Femenino</label>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-12">
+      <label for="b-date"> Fecha de nacimiento</label>
+      <input id="b-date" type="date" class="form-control" value="{{ user.b_date }}">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="col-md-6">
+      <label for="phone">Teléfono fijo</label>
+      <input type="text" class="form-control" id="phone" value="{{ user.phone | e }}">
+    </div>
+    <div class="col-md-6">
+      <label for="cellphone">Teléfono celular</label>
+      <input type="text" class="form-control" id="cellphone" value="{{ user.cellphone | e }}">
+    </div>
+  </div>
+
+  </fieldset>
+</form>

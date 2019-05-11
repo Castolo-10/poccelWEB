@@ -1,0 +1,143 @@
+#icon {
+  color: var(--primary);
+  background-color: var(--yellow);
+  padding: 3px 6px;
+  border-radius: 3px;
+}
+
+body {
+  background-color: #eee;
+}
+
+.navbar-laravel {
+  background-color: rgba(255,255,255,0.7);
+}
+
+main {
+  margin-top: 5em;
+  transition: margin linear 0.25s;
+  -webkit-transition: margin linear 0.25s;
+  -moz-transition: margin linear 0.25s;
+  min-height: 80vh;
+}
+
+main.extended {
+  margin-top: 7em;
+}
+
+footer.page-footer {
+  background-color: var(--secondary);
+  color: rgba(255,255,255,.7);
+}
+
+footer.page-footer a {
+  color: #fff;
+}
+
+#search-toggle::before, a.more::after {
+  font-family: "Font Awesome 5 Free";
+  vertical-align: middle;
+  font-weight: 900;
+  font-size: 1em;
+}
+
+#search-toggle {
+  background-color: transparent;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  transition: border linear 0.2s;
+  -webkit-transition: border linear 0.2s;
+  -moz-transition: border linear 0.2s;
+}
+
+#search-toggle:hover {
+  color: var(--indigo);
+  border-color: var(--indigo);
+}
+
+#search-toggle[aria-expanded="false"]::before {
+  content: "\f002";
+}
+
+#search-toggle[aria-expanded="true"]::before {
+  padding: .16em;
+  content: "\f00d";
+}
+
+a.more {
+  text-decoration: none;
+}
+
+a.more::after {
+  content: "\f105";
+  padding-left: .4em;
+}
+
+/* catalogo */
+.item-container .card-title {
+  font-variant: small-caps;
+}
+
+.item-container .card {
+  margin: .5em 0;
+}
+
+.item-container .card:hover {
+  transition: box-shadow linear 400ms;
+  -webkit-transition: box-shadow linear 400ms;
+  -moz-transition: box-shadow linear 400ms;
+  box-shadow: 0px 3px 5px rgba(0,0,0,.2)
+}
+
+.item-container .card img {
+  height: 170px;
+  object-fit: cover;
+}
+
+.modal .img-fluid {
+  width: 100%;
+  height: auto;
+}
+
+@media screen and (max-width: 576px) {
+  .item-container .card img {
+    height: auto;
+  }
+}
+
+.price {
+  color: #eb0042;
+  font-weight: 700;
+}
+
+/* mi cuenta */
+#myAccount input[type="text"],
+#myAccount input[type="date"],
+#myAccount input[type="month"]
+{
+  padding-top: .6em;
+}
+
+#myAccount label:not(.form-check-label):not(.input-group-text) {
+  font-size: .65em;
+  color: white;
+  padding: .15em .65em;
+  border-radius: 2px;
+  background-color: rgba(128,128,128,.7);
+  position: relative;
+  top: 15px;
+  left: 10px;
+}
+
+/* home */
+
+#carouselOffers img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+.slide-title, .slide-text {
+  background-color: rgba(52,144,220,0.8);
+  border-radius: 3px;
+}

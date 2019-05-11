@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="{{ app.getLocale() }}">
+  <head>
+    {% block head %}
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+      <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
+      <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+      <title>{% block title %}{% endblock %} - Poccel</title>
+    {% endblock %}
+  </head>
+  <body>
+    <header id="header">{% include 'partials.navbar' %}</header>
+
+    <main role="main">{% block content %}{% endblock %}</main>
+
+    <footer role="footer" class="page-footer mt-3">
+      {% block footer %}
+        <div class="text-center py-3">
+          &copy; 2019 Copyright: <a href="/" class="link" >Poccel</a>
+        </div>
+      {% endblock %}
+    </footer>
+
+  {% block scripts %}
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/main.js') }} "></script>
+  {% endblock %}
+  </body>
+</html>

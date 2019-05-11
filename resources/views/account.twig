@@ -1,0 +1,65 @@
+{% extends "base" %}
+
+{% block title %}Mi Cuenta{% endblock %}
+
+{% block content %}
+  <div class="col-sm-12 col-md-10 col-lg-8 m-auto">
+
+    <ul class="nav nav-pills flex-column flex-sm-row" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="flex-sm-fill text-sm-center nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">Información personal</a>
+      </li>
+      <li class="nav-item">
+        <a class="flex-sm-fill text-sm-center nav-link" id="history-tab" data-toggle="tab" href="#history" role="tab" aria-controls="history" aria-selected="false">Estado de Cuenta</a>
+      </li>
+      <li class="nav-item">
+        <a class="flex-sm-fill text-sm-center nav-link" id="paid-method-tab" data-toggle="tab" href="#paid-method" role="tab" aria-controls="security" aria-selected="false">Métodos de pago</a>
+      </li>
+      <li class="nav-item">
+        <a class="flex-sm-fill text-sm-center nav-link" id="security-tab" data-toggle="tab" href="#security" role="tab" aria-controls="security" aria-selected="false">Seguridad</a>
+      </li>
+    </ul>
+    <div class="tab-content mt-2" id="myAccount">
+      <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="card border-gray">
+          <h5 class="card-header">Datos personales</h5>
+          <div class="card-body pt-0">
+            {% include 'partials.form.profile' %}
+          </div>
+        </div>
+        <div class="card border-gray mt-2">
+          <h5 class="card-header">Dirección</h5>
+          <div class="card-body pt-0">
+            {% include 'partials.form.address' %}
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="security" role="tabpanel" aria-labelledby="security-tab">
+        <div class="card border-gray">
+          <h5 class="card-header">Cambiar contraseña</h5>
+          <div class="card-body">
+          {% include 'partials.form.security' %}
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">
+        <div class="card border-gray">
+          <h5 class="card-header">Resumen de la cuenta</h5>
+          <div class="card-body pt-0">
+          {% include 'partials.form.history' %}
+          {% include 'partials.modal.cc-payment' %}
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="paid-method" role="tabpanel" aria-labelledby="paid-method-tab">
+        <div class="card border-gray">
+          <h5 class="card-header">Tarjetas vinculadas</h5>
+          <div class="card-body pt-0">
+            {% include 'partials.form.cc_table' %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+{% endblock %}

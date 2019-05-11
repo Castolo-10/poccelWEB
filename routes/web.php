@@ -12,5 +12,27 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return View::make('home');
 });
+
+Route::get('/login', function () {
+    return View::make('login');
+});
+
+Route::get('/forgot-password', function () {
+    return View::make('forgot');
+});
+
+Route::get('/reset-password', function () {
+    return View::make('reset');
+});
+
+Route::get('/catalog', function () {
+    return View::make('catalog');
+});
+
+Route::get('/my-account', function () {
+    return View::make('account');
+});
+
+?>
