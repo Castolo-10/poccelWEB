@@ -7,10 +7,9 @@
     {% if _form.title %}
       <div class="card-title h6">{{ _form.title }}</div>
     {% endif %}
-    <form class="form-group">
+    <form class="form-group" action="{{ _form.action }}" method="{{ _form.method }}">
     {% block form %}{% endblock %}
     </form>
-    {# include _form.partial #}
     </div>
   </div>
 </div>

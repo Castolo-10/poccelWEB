@@ -1,4 +1,4 @@
-{% set user = {'name': 'Usuario'} %}
+{% set username = app.request.cookies.get('username', '') %}
 
 <nav class="navbar navbar-expand-sm navbar-laravel fixed-top">
   <div class="container d-block p-0">
@@ -9,27 +9,17 @@
       </a>
 
       <div class="mt-1">
-        {% if user %}
+        {% if username %}
           <div class="btn-group">
             <button type="button" class="btn btn-outline-primary btn-sm dropdown-toggle"  id="user-dropdown" data-toggle="dropdown" aria-haspopup="true">
               <i class="fas fa-lg fa-user-circle"></i>
-              <span class="font-weight-bold">{{ user.name | e }}</span>
+              <span class="font-weight-bold">{{ username | e }}</span>
             </button>
             <div class="dropdown-menu dropdown-menu-right mt-0" aria-labelledby="user-dropdown">
               <a class="dropdown-item" href="/my-account"><i class="fas fa-user">&nbsp;</i>Mi Cuenta</a>
               <a class="dropdown-item" href="/logout"><i class="fas fa-power-off">&nbsp;</i>Cerrar Sesión</a>
             </div>
           </div>
-          {#<div class="dropdown">
-            <button class="btn btn-outline-primary btn-sm dropdown-toggle" id="user-dropdown" data-toggle="dropdown" aria-haspopup="true">
-              <i class="fas fa-lg fa-user-circle"></i>
-              <span class="font-weight-bold">{{ user.name | e }}</span>
-            </button>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="user-dropdown">
-              <a class="dropdown-item" href="/my-account"><i class="fas fa-user">&nbsp;</i>Mi Cuenta</a>
-              <a class="dropdown-item" href="/logout"><i class="fas fa-power-off">&nbsp;</i>Cerrar Sesión</a>
-            </div>
-          </div>#}
         {% else %}
           <a href="/login" class="btn btn-outline-primary btn-sm">
             <i class="fas fa-lg fa-sign-in-alt"></i>
