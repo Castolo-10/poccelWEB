@@ -31,7 +31,5 @@ Route::get('/reset-password', function () {
 
 Route::get('/catalogo', 'CatalogController@paginate');
 
-Route::get('/my-account', function () {
-    return View::make('account');
-});
+Route::get('/mi-cuenta', 'MyAccountController@profile');
 

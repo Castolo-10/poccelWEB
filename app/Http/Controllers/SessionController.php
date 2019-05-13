@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
+use \App\Customer;
 
 class SessionController extends Controller
 {
@@ -12,17 +12,13 @@ class SessionController extends Controller
     	$email = $req->input()['email'];
     	$password = $req->input()['password'];
 
-    	$userData = DB::table('cliente')
-    		->where([['correo', $email], ['password', $password]])
-    		->select('id_cliente', 'nombre')
-    		->limit(1)
-    		->get();
+    	$user = Customer::attemp($email, $password);
 
-    	if (count($userData)) {
+    	if ($user) {
     		\Cookie::queue(
-    			\Cookie::make('username', $userData[0]->nombre));
+    			\Cookie::make('username', $user->name));
 			\Cookie::queue(
-				\Cookie::make('userId', $userData[0]->id_cliente));
+				\Cookie::make('userId', $user->id));
 			return redirect('');
     	}
 
