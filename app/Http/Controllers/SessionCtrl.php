@@ -3,16 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class SessionCtrl extends Controller
 {
-    function login() {
+    function login(Request $req) {
 
-    	if ( rand(0, 1) ) {
-    		\Cookie::queue(\Cookie::make('username', 'Nombre Cliente'));
-			\Cookie::queue(\Cookie::make('userId', '1'));
+    	$email = $req->input()['email'];
+    	$password = $req->input()['password'];
+
+    	$userData = DB::table('cliente')
+    		->where([['correo', $email], ['password', $password]])
+    		->select('id_cliente', 'nombre')
+    		->get();
+
+    	if (count($userData)) {
+    		\Cookie::queue(
+    			\Cookie::make('username', $userData[0]->nombre));
+			\Cookie::queue(
+				\Cookie::make('userId', $userData[0]->id_cliente));
 			return redirect('');
     	}
+
 		return view('login', ['error' => ['msg' => 'Correo o contraseña incorrectos']]);
     }
 
