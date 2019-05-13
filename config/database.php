@@ -85,6 +85,48 @@ return [
             'prefix_indexes' => true,
         ],
 
+        'db_central' => [
+            'driver' => 'pgsql',
+            'host' => env('DB_HOST_CENTRAL', '127.0.0.1'),
+            'port' => env('DB_PORT_CENTRAL', '5432'),
+            'database' => env('DB_DATABASE_CENTRAL', 'forge'),
+            'username' => env('DB_USERNAME_CENTRAL', 'forge'),
+            'password' => env('DB_PASSWORD_CENTRAL', ''),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'schema' => 'public',
+            'sslmode' => 'prefer',
+        ],
+
+        'db_sucursal_1' => [
+            'driver' => 'pgsql',
+            'host' => env('DB_HOST_SUCURSAL_1', '127.0.0.1'),
+            'port' => env('DB_PORT_SUCURSAL_1', '5432'),
+            'database' => env('DB_DATABASE_SUCURSAL_1', 'forge'),
+            'username' => env('DB_USERNAME_SUCURSAL_1', 'forge'),
+            'password' => env('DB_PASSWORD_SUCURSAL_1', ''),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'schema' => 'public',
+            'sslmode' => 'prefer',
+        ],
+
+        'db_sucursal_2' => [
+            'driver' => 'pgsql',
+            'host' => env('DB_HOST_SUCURSAL_2', '127.0.0.1'),
+            'port' => env('DB_PORT_SUCURSAL_2', '5432'),
+            'database' => env('DB_DATABASE_SUCURSAL_2', 'forge'),
+            'username' => env('DB_USERNAME_SUCURSAL_2', 'forge'),
+            'password' => env('DB_PASSWORD_SUCURSAL_2', ''),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'schema' => 'public',
+            'sslmode' => 'prefer',
+        ],
+
     ],
 
     /*

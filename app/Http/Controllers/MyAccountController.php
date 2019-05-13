@@ -13,6 +13,7 @@ class MyAccountController extends Controller
     		$customer = Customer::get($id);
     		if ($customer) {
                 $customer->paidMethods();
+                $customer->accountDetails();
     			return view('account', [
                     'my' => $customer,
                 ]);
