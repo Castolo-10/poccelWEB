@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return View::make('home');
-});
+Route::get('/', 'HomeController');
 
 Route::get('/login', function () {
     return View::make('login');
@@ -31,9 +29,7 @@ Route::get('/reset-password', function () {
     return View::make('reset');
 });
 
-Route::get('/catalog', function () {
-    return View::make('catalog');
-});
+Route::get('/catalogo', 'CatalogController@paginate');
 
 Route::get('/my-account', function () {
     return View::make('account');
