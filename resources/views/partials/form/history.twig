@@ -4,13 +4,13 @@
   <div class="form-row">
     <div class="col-md-5">
       <label for="account-id">Número de cuenta</label>
-      <input type="text" class="form-control" id="account-id" value="{{ my.id }}">
+      <input type="text" class="form-control" id="account-id" value="{{ '%06d'|format(my.id) }}">
     </div>
-    <div class="col-md-3">
+    <div class="col-md-4">
       <label for="expire">Fecha de corte</label>
       <input type="date" class="form-control" id="expire" value="{{ my.account.expire }}">
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
       <label for="account-balance">Total a pagar</label>
       <input type="text" class="form-control" id="account-balance" value="{{ my.account.total }}">
     </div>
@@ -50,7 +50,7 @@
               <i class="fa fa-info-circle"></i>
             </button>
             <button class="btn btn-outline-secondary btn-sm"
-              data-toggle="modal" data-target="#payModal">
+              data-toggle="modal" data-target="#payModal" title="Abonar">
               <i class="fa fa-credit-card"></i>
             </button>
           </div>
