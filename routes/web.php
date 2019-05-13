@@ -19,9 +19,9 @@ Route::get('/login', function () {
     return View::make('login');
 });
 
-Route::post('/login', 'SessionCtrl@login');
+Route::post('/login', 'SessionController@login');
 
-Route::get('/logout', 'SessionCtrl@logout');
+Route::get('/logout', 'SessionController@logout');
 
 Route::get('/forgot-password', function () {
     return View::make('forgot');

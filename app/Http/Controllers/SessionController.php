@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 
-class SessionCtrl extends Controller
+class SessionController extends Controller
 {
     function login(Request $req) {
 
@@ -15,6 +15,7 @@ class SessionCtrl extends Controller
     	$userData = DB::table('cliente')
     		->where([['correo', $email], ['password', $password]])
     		->select('id_cliente', 'nombre')
+    		->limit(1)
     		->get();
 
     	if (count($userData)) {
@@ -25,7 +26,10 @@ class SessionCtrl extends Controller
 			return redirect('');
     	}
 
-		return view('login', ['error' => ['msg' => 'Correo o contraseña incorrectos']]);
+		return view('login', [
+			'error' => [
+				'subject' => 'Login Error',
+				'msg' => 'Invalid email or password']]);
     }
 
     function logout() {
