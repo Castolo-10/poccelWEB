@@ -1,34 +1,22 @@
-{% set cc_info = [
-    { 'num': '123456******4321', 'exp': '2022-11', 'last': '2019-02-01' },
-    { 'num': '234567******5432', 'exp': '2025-01', 'last': '2019-03-12' },
-    { 'num': '345678******6543', 'exp': '2022-10', 'last': '2019-01-05' },
-    { 'num': '456789******7654', 'exp': '2023-08', 'last': '2019-04-23' },
-    ]
-%}
-
 <div class="form-row table-responsive">
   <table class="table table-hover">
     <thead>
-      <tr>
+      <tr class="text-center">
         <th scope="col">Número de tarjeta</th>
         <th scope="col">Fecha de expiración</th>
         <th scope="col">Última vez utilizada</th>
-        <th></th>
       </tr>
     </thead>
     <tbody>
-      {% for cc in cc_info %}
-      <tr>
-        <td>{{ cc.num }}</td>
-        <td>{{ cc.exp }}</td>
-        <td>{{ cc.last }}</td>
-        <td>
-          <button class="btn btn-outline-danger btn-sm" title="Olvidar tarjeta"><i class="fas fa-trash-alt"></i></button>
-        </td>
+      {% for cc in my.account.cc_info %}
+      <tr class="text-center">
+        <td>{{ cc.number }}</td>
+        <td>{{ cc.exp_date }}</td>
+        <td>{{ cc.last_usage }}</td>
       </tr>
       {% else %}
       <tr class="col-12 text-center">
-        <td colspan="4">No debe ningún producto</td>
+        <td colspan="4">No tiene tarjetas vinculadas</td>
       </tr>
       {% endfor %}
     </tbody>

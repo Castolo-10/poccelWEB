@@ -16,6 +16,7 @@ class Customer extends Model
 	public $m_surname;
 	public $address;
 	public $phone;
+	public $account = [];
 
 	public function __construct () {}
 
@@ -62,4 +63,32 @@ class Customer extends Model
     	}
     	return null;
 	}
+
+	function paidMethods () {
+		$data = DB::table('info_pago')
+			->where('id_cliente', $this->id)
+			->orderBy('fecha', 'desc')
+			->get();
+		$cc_info = [];
+		if (count($data)) {
+			foreach ($data as $cc) {
+				array_push($cc_info, [
+					'number' => maskCreditCardNumber($cc->numero_tarjeta),
+					'exp_date' => $cc->expiracion,
+					'last_usage' => $cc->fecha,
+				]);
+			}
+		}
+		$this->account['cc_info'] = $cc_info;
+		return $cc_info;
+	}
+
+	function accountDetails () {
+	}
 }
+
+
+function maskCreditCardNumber($cc_number) {
+	return substr($cc_number, 0, 6).str_repeat('*', 6).substr($cc_number, -4);
+}
+

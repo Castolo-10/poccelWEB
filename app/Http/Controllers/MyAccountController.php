@@ -12,7 +12,10 @@ class MyAccountController extends Controller
     	if ($id) {
     		$customer = Customer::get($id);
     		if ($customer) {
-    			return view('account', ['my' => $customer]);
+                $customer->paidMethods();
+    			return view('account', [
+                    'my' => $customer,
+                ]);
     		}
     	}
     	return redirect('');
