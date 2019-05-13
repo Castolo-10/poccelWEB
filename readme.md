@@ -7,10 +7,8 @@
 - Para instalar dependencias del proyecto utilizar: **composer update**
 - Para montar la app y poder verla en el navegador usar el comando: **php artisan serve**
 
-En caso de que le aparezca un error 500, puede requerir:
-
-- Elimine la carpeta _vendor_ e instale las dependencias usando **composer install**
-
-- En caso de no existir, cree un archivo .env (puede copiar el archivo .env.example)
-
-- Genere una clave para la aplicación  ejecutando **php artisan key:generate**
+- En caso de que le aparezca un error 500, puede requerir:
+  - Elimina la carpeta _vendor_ e instalar las dependencias usando: **composer install**
+  - Actualizar las dependencias con: **composer update**
+  - En caso de no existir, crear un archivo .env (puede copiar el archivo .env.example)
+  - Generar una clave para la aplicación  ejecutando **php artisan key:generate**
