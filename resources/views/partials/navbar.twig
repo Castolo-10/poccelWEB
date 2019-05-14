@@ -1,4 +1,4 @@
-{% set username = app.request.cookies.get('username', '') %}
+{% set user = app.request.user %}
 
 <nav class="navbar navbar-expand-sm navbar-laravel fixed-top">
   <div class="container d-block p-0">
@@ -9,11 +9,11 @@
       </a>
 
       <div class="mt-1">
-        {% if username %}
+        {% if user %}
           <div class="btn-group">
             <button type="button" class="btn btn-outline-primary btn-sm dropdown-toggle"  id="user-dropdown" data-toggle="dropdown" aria-haspopup="true">
               <i class="fas fa-lg fa-user-circle"></i>
-              <span class="font-weight-bold">{{ username | e }}</span>
+              <span class="font-weight-bold">{{ user.name | e }}</span>
             </button>
             <div class="dropdown-menu dropdown-menu-right mt-0" aria-labelledby="user-dropdown">
               <a class="dropdown-item" href="/mi-cuenta"><i class="fas fa-user">&nbsp;</i>Mi Cuenta</a>
@@ -32,12 +32,12 @@
       </div>
     </div>
 
-    <div class="input-group input-group-sm mt-1 collapse" id="search-bar">
-      <input type="text" class="form-control" id="q-search" placeholder="Busca tu producto...">
+    <form class="input-group input-group-sm mt-1 collapse" id="search-bar" action="/catalogo" method="GET">
+      <input type="text" name="s" class="form-control" id="q-search" placeholder="Busca tu producto...">
       <div class="input-group-append">
-        <button type="button" class="btn btn-outline-primary"><i class="fas fa-search"></i></button>
+        <button id="search-button" type="submit" class="btn btn-outline-primary"><i class="fas fa-search"></i></button>
       </div>
-    </div>
+    </form>
 
   </div>
 </nav>

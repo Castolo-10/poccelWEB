@@ -5,11 +5,10 @@
       <div class="input-group-prepend">
         <label class="input-group-text" for="order">Ordenar por:</label>
       </div>
-      <select class="form-control" id="order">
-        <option selected value="0">Relevancia</option>
-        <option value="1">Nombre</option>
-        <option value="2">Precio</option>
-        <option value="3">Disponibilidad</option>
+      <select name="sort" class="form-control">
+        <option selected value="">No ordenar</option>
+        <option value="name">Nombre</option>
+        <option value="price">Precio</option>
       </select>
     </div>
 
@@ -17,11 +16,11 @@
       <div class="input-group-prepend">
         <label class="input-group-text" for="per-page">Articulos por página:</label>
       </div>
-      <select class="form-control" id="per-page">
+      <select name="pageSize" class="form-control">
         <option selected value="1">8</option>
         <option value="2">16</option>
         <option value="3">32</option>
-        <option value="3">64</option>
+        <option value="-1">Todos</option>
       </select>
     </div>
   </div>

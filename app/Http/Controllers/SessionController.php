@@ -12,13 +12,11 @@ class SessionController extends Controller
     	$email = $req->input()['email'];
     	$password = $req->input()['password'];
 
-    	$user = Customer::attemp($email, $password);
+    	$userId = Customer::attemp($email, $password);
 
-    	if ($user) {
+    	if ($userId) {
     		\Cookie::queue(
-    			\Cookie::make('username', $user->name));
-			\Cookie::queue(
-				\Cookie::make('userId', $user->id));
+    			\Cookie::make('session', $userId));
 			return redirect('');
     	}
 
@@ -29,8 +27,7 @@ class SessionController extends Controller
     }
 
     function logout() {
-    	\Cookie::queue(\Cookie::forget('username'));
-		\Cookie::queue(\Cookie::forget('userId'));
+    	\Cookie::queue(\Cookie::forget('session'));
 		return redirect('');
     }
 }

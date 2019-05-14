@@ -24,17 +24,14 @@ class Customer extends Model
     public static function attemp ($email, $password) {
     	$data = DB::table('cliente')
     		->where([['correo', $email], ['password', $password]])
-    		->select('id_cliente', 'nombre')
+    		->select('id_cliente')
     		->limit(1)
     		->get();
 
     	if (count($data)) {
-    		$customer = new Customer();
-    		$customer->name = $data[0]->nombre;
-    		$customer->id = $data[0]->id_cliente;
-    		return $customer;
+    		return $data[0]->id_cliente;
     	}
-    	return null;
+    	return false;
     }
 
 	public static function get($id) {
