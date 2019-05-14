@@ -14,6 +14,8 @@
 use App\Http\Middleware\LoadSession;
 use App\Http\Middleware\SessionRequired;
 use App\Http\Middleware\CheckPageSize;
+use App\Http\Middleware\CheckProductSortingCriteria;
+
 
 Route::get('/', 'HomeController')
 	->middleware(LoadSession::class);
@@ -37,7 +39,8 @@ Route::get('/reset-password', function () {
 Route::get('/catalogo', 'CatalogController@paginate')
 	->middleware(
 		LoadSession::class,
-		CheckPageSize::class
+		CheckPageSize::class,
+		CheckProductSortingCriteria::class
 	);
 
 Route::get('/mi-cuenta', 'MyAccountController@profile')
