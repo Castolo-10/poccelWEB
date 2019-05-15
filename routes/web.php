@@ -31,13 +31,18 @@ Route::post('/login', 'SessionController@login')
 
 Route::get('/logout', 'SessionController@logout');
 
-Route::get('/forgot-password', function () {
-    return View::make('forgot');
-}); // restrict session?
+Route::get('/catalogo', 'CatalogController@paginate')
+	->middleware(
+		LoadSession::class,
+		CheckPageSize::class,
+		CheckProductSortingCriteria::class
+	);
 
-Route::get('/reset-password', function () {
-    return View::make('reset');
-});
+Route::get('/mi-cuenta/detalle/{accId}', 'MyAccountController@details')
+	->middleware(
+		LoadSession::class,
+		SessionRequired::class
+	);
 
 Route::post('mi-cuenta/cambiar-contrasena', 'MyAccountController@changePassword')
 	->middleware(
@@ -46,16 +51,8 @@ Route::post('mi-cuenta/cambiar-contrasena', 'MyAccountController@changePassword'
 		CheckPasswordFields::class
 		);
 
-Route::get('/catalogo', 'CatalogController@paginate')
-	->middleware(
-		LoadSession::class,
-		CheckPageSize::class,
-		CheckProductSortingCriteria::class
-	);
-
-Route::get('/mi-cuenta', 'MyAccountController@profile')
+Route::get('/mi-cuenta', 'MyAccountController@show')
 	->middleware(
 		LoadSession::class,
 		SessionRequired::class
 	);
-

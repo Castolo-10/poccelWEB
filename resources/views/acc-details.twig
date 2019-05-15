@@ -1,0 +1,31 @@
+{% extends "base" %}
+
+{% block title %}Mi Cuenta{% endblock %}
+
+{% block content %}
+  <div class="col-sm-12 col-md-10 col-lg-8 m-auto my-2" id="myAccount">
+    {% include 'partials.messages' %}
+
+    <div class="card border-gray">
+      <h5 class="card-header">Información de la cuenta</h5>
+      <div class="card-body pt-0">
+      {% include 'partials.form.account.details.info' %}
+      </div>
+    </div>
+
+    <div class="card border-gray mt-2">
+      <h5 class="card-header">Artículos adquiridos</h5>
+      <div class="card-body pt-0">
+      {% include 'partials.form.account.details.purchase' %}
+      </div>
+    </div>
+
+    <div class="card border-gray mt-2">
+      <h5 class="card-header">Abonos efectuados</h5>
+      <div class="card-body pt-0">
+      {% include 'partials.form.account.details.credit' %}
+      </div>
+    </div>
+
+  </div>
+{% endblock %}

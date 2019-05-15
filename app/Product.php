@@ -26,6 +26,20 @@ class Product extends Model
         ->paginate($pageSize);
     }
 
+    public static function whereIn($arrayIds, $onlyName=false) {
+        if ($onlyName) {
+            return DB::table('producto')
+                ->select('nombre_producto', 'id_producto')
+                ->whereIn('id_producto', $arrayIds)
+                ->get();
+        }
+        return DB::table('producto')
+            ->join('imagen_producto', 'producto.id_producto', '=', 'imagen_producto.id_producto')
+            ->select('producto.*', DB::raw("convert_from(imagen_producto.string_img, 'UTF8') as img_producto"))
+            ->whereIn('producto.id_producto', $arrayId)
+            ->get();
+    }
+
     public static function random ($size) {
     	return DB::table('producto')
         ->join('imagen_producto', 'producto.id_producto', '=', 'imagen_producto.id_producto')

@@ -1,14 +1,16 @@
 #poccel-icon::before {
   color: var(--primary);
   background-color: var(--yellow);
-
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   font-size: 1em;
-
   content: "\f023";
   margin-right: .6em;
   padding: .35em .5em;
+}
+
+#poccel-icon:hover {
+  background-color: var(--primary);
 }
 
 #poccel-icon {

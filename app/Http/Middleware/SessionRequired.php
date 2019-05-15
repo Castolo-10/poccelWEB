@@ -16,7 +16,7 @@ class SessionRequired
     public function handle($request, Closure $next)
     {
         if (!$request->user) {
-            return redirect('/login')->withMessage('You need to be logged!');
+            return redirect('/login')->withErrors('You need to be logged!');
         }
         return $next($request);
     }

@@ -1,7 +1,7 @@
 <form class="mb-4 catalog-filters" action="/catalogo" method="get">
   <div class="form-row">
     <div class="col">
-      <input type="text" name="s" class="form-control" value="{{ options.search ? options.search : '' }}">
+      <input type="search" name="s" class="form-control" value="{{ options.search ? options.search : '' }}">
     </div>
     <div class="col">
       <!--label class="inline">Ordenar por</label-->
@@ -40,6 +40,6 @@
 
 {% if options.search %}
 <div class="row text-center">
-  <p class="text-muted">Se encontraron <strong>{{ products.total() }}</strong> de la búsqueda: {{ options.search|e }}</p>
+  <p class="text-muted col-12">Se encontraron <strong>{{ products.total() }}</strong> artículos en la búsqueda: <i>{{ options.search|e }}</i></p>
 </div>
 {% endif %}

@@ -1,0 +1,24 @@
+<form>
+  <fieldset disabled="disabled">
+    
+    <div class="form-row">
+      <div class="col-md-3 col-sm-6">
+        <label for="fecha-compra">Fecha de Compra</label>
+        <input type="text" class="form-control" id="fecha-compra" value="{{ account.info.fecha_compra | e }}">
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <label for="saldo">Saldo</label>
+        <input type="text" class="form-control" id="saldo" value="{{ account.info.saldo | e }}">
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <label for="abonado">Abonado</label>
+        <input type="text" class="form-control" id="abonado" value="{{ account.info.abonado | e }}">
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <label for="resto">Restante</label>
+        <input type="text" class="form-control" id="resto" value="{{ account.info.restante | e }}">
+      </div>
+    </div>
+
+  </fieldset>
+</form>

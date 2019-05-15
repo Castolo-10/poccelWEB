@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use NumberFormatter;
 use DB;
 
 class Customer extends Model
@@ -17,7 +16,7 @@ class Customer extends Model
 	public $m_surname;
 	public $address;
 	public $phone;
-	public $account = [];
+	public $account;
 
 	public function __construct () {}
 
@@ -95,38 +94,11 @@ class Customer extends Model
 		return $this;
 	}
 
-	public function accountDetails () {
-		$data_sucursal_1 = $this->accountDetailsBySucursal(
-			env('DB_CONNECTION_SUCURSAL_1'));
-		$data_sucursal_2 = $this->accountDetailsBySucursal(
-			env('DB_CONNECTION_SUCURSAL_2'));
-		
-		$this->account['details'] = array_merge($data_sucursal_1, $data_sucursal_2);
-		
-		$this->account['total'] = $this->calcTotal();
+	public function accountList () {
+		$this->account = Account::allByUser($this->id);
 		return $this;
 	}
 
-	private function accountDetailsBySucursal ($db_conn) {
-		$data = DB::connection($db_conn)->table(DB::raw(
-			'(SELECT cuenta.*, venta.fecha AS fecha_compra, SUM(abono.cantidad) AS abonado, cuenta.saldo - SUM(abono.cantidad) AS restante FROM cuenta LEFT JOIN venta ON venta.id_venta = cuenta.id_venta LEFT JOIN abono ON cuenta.id_cuenta = abono.id_cuenta WHERE venta.id_cliente = ? GROUP BY cuenta.id_cuenta, venta.fecha) AS detalle_cuentas'))
-		->where('restante', '>', DB::raw("'0'"))
-		->setBindings([$this->id])
-		->get();
-
-		return $data->toArray();
-	}
-
-	private function calcTotal () {
-		$formatter = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
-		$curr = 'USD';
-		$total = 0.0;
-		foreach ($this->account['details'] as $acc) {
-			$currency = $formatter->parseCurrency($acc->restante, $curr);
-			$total += $currency;
-		}
-		return $formatter->formatCurrency($total, $curr);
-	}
 }
 
 

@@ -27,7 +27,7 @@
       <button class="btn btn-light float-right mr-2"
         data-toggle="collapse" data-target=".multi-navbar-collapse"
         aria-expanded="true" aria-controls="main-bar search-bar"
-        href="#search-bar">
+        href="#search-bar" id="show-search-bar">
         <i class="fas fa-search"></i>
       </button>
 
@@ -45,7 +45,7 @@
         </button>
 
         <form action="/catalogo" method="get" class="col-10" id="search-form">
-          <input type="text" name="s" class="form-control" placeholder="Busca tu producto...">
+          <input id="txt-search" type="search" name="s" class="form-control" placeholder="Busca tu producto...">
         </form>
 
         <button class="btn btn-light col" form="search-form">

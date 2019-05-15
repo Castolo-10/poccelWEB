@@ -11,17 +11,17 @@
       </tr>
     </thead>
     <tbody>
-      {% for detail in user.account.details %}
-      <tr data-account="{{ detail.id_cuenta }}">
-        <td>{{ detail.fecha_compra }}</td>
-        <td>{{ detail.saldo }}</td>
-        <td>{{ detail.abonado }}</td>
-        <td>{{ detail.restante }}</td>
+      {% for acc in user.account.list %}
+      <tr data-account="{{ acc.id_cuenta }}">
+        <td>{{ acc.fecha_compra }}</td>
+        <td>{{ acc.saldo }}</td>
+        <td>{{ acc.abonado }}</td>
+        <td>{{ acc.restante }}</td>
         <td>
           <div class="btn-group">
-            <button class="btn btn-outline-primary btn-sm">
+            <a class="btn btn-outline-primary btn-sm" href="/mi-cuenta/detalle/{{ acc.id_cuenta }}">
               <i class="fa fa-info-circle"></i>
-            </button>
+            </a>
             <button class="btn btn-outline-secondary btn-sm"
               data-toggle="modal" data-target="#payModal" title="Abonar">
               <i class="fa fa-credit-card"></i>
