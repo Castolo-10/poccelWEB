@@ -38,7 +38,7 @@ Route::get('/catalogo', 'CatalogController@paginate')
 		CheckProductSortingCriteria::class
 	);
 
-Route::get('/mi-cuenta/detalle/{accId}', 'MyAccountController@details')
+Route::get('/mi-cuenta/detalles/{accId}', 'MyAccountController@details')
 	->middleware(
 		LoadSession::class,
 		SessionRequired::class

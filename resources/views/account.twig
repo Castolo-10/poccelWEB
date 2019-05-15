@@ -4,6 +4,14 @@
 
 {% block content %}
   <div class="col-sm-12 col-md-10 col-lg-8 m-auto">
+
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Mi cuenta</li>
+      </ol>
+    </nav>
+
     {% include 'partials.messages' %}
 
     <ul class="nav nav-pills flex-column flex-sm-row" id="myTab" role="tablist">

@@ -4,6 +4,15 @@
 
 {% block content %}
   <div class="col-sm-12 col-md-10 col-lg-8 m-auto my-2" id="myAccount">
+
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+        <li class="breadcrumb-item"><a href="/mi-cuenta">Mi Cuenta</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Detalles</li>
+      </ol>
+    </nav>
+
     {% include 'partials.messages' %}
 
     <div class="card border-gray">
