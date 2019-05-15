@@ -17,12 +17,17 @@ class CheckPageSize
     public function handle($request, Closure $next)
     {
         $pageSize = Input::get('pageSize', '');
+        $defPageSize = env('DEFAULT_PAGE_SIZE');
 
+        $data = $request->all();
         if (intval($pageSize) == 0) {
-            $data = $request->all();
-            $data['pageSize'] = env('DEFAULT_PAGE_SIZE');
-            $request->merge($data);
+            $data['pageSize'] = $defPageSize;
+        } else if($pageSize > 0) {
+            $nwPageSize = ceil($pageSize / $defPageSize);
+            $nwPageSize *= $defPageSize;
+            $data['pageSize'] = intval($nwPageSize);
         }
+        $request->merge($data);
         return $next($request);
     }
 }

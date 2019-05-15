@@ -17,12 +17,19 @@ class CheckProductSortingCriteria
      */
     public function handle($request, Closure $next)
     {
-        $sort = Input::get('sort', '');
+        $sort = Input::get('sort', null);
+        $order = Input::get('desc', null);
 
         if (!array_key_exists($sort, Product::SORTING_CRITERIA)) {
             $data = $request->all();
             $data['sort'] = null;
             $request->merge($data);
+            $request->sort = null;
+        } else {
+            $request->sort = [
+                'by' => $sort,
+                'order' => ($order ? 'desc' : 'asc'),
+            ];
         }
 
         return $next($request);

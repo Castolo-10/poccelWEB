@@ -93,18 +93,11 @@ class Customer extends Model
 	}
 
 	private function accountDetailsBySucursal ($db_conn) {
-		$data = DB::connection($db_conn)
-			->table('cuenta')
-			->leftJoin('venta', 'venta.id_venta', '=', 'cuenta.id_venta')
-			->leftJoin('abono', 'cuenta.id_cuenta', '=', 'abono.id_cuenta')
-			->where('venta.id_cliente', $this->id)
-			->groupBy('cuenta.id_cuenta', 'venta.fecha')
-			->select(
-				'cuenta.*',
-				DB::raw('venta.fecha AS fecha_compra'),
-				DB::raw('SUM(abono.cantidad) AS abonado'),
-				DB::raw('cuenta.saldo - SUM(abono.cantidad) AS restante'))
-			->get();
+		$data = DB::connection($db_conn)->table(DB::raw(
+			'(SELECT cuenta.*, venta.fecha AS fecha_compra, SUM(abono.cantidad) AS abonado, cuenta.saldo - SUM(abono.cantidad) AS restante FROM cuenta LEFT JOIN venta ON venta.id_venta = cuenta.id_venta LEFT JOIN abono ON cuenta.id_cuenta = abono.id_cuenta WHERE venta.id_cliente = ? GROUP BY cuenta.id_cuenta, venta.fecha) AS detalle_cuentas'))
+		->where('restante', '>', DB::raw("'0'"))
+		->setBindings([$this->id])
+		->get();
 
 		return $data->toArray();
 	}

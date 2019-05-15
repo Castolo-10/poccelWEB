@@ -1,44 +1,60 @@
 {% set user = app.request.user %}
 
-<nav class="navbar navbar-expand-sm navbar-laravel fixed-top">
-  <div class="container d-block p-0">
-    <div class="d-flex justify-content-between p-0">
-      <a class="navbar-brand navbar-left" href="/">
-        <i class="fas fa-lock" id="icon"></i>
-        Poccel
-      </a>
+<nav class="navbar navbar-laravel fixed-top">
+  <div class="container">
+    <div class="collapse multi-navbar-collapse w-100 show" id="main-bar">
 
-      <div class="mt-1">
-        {% if user %}
-          <div class="btn-group">
-            <button type="button" class="btn btn-outline-primary btn-sm dropdown-toggle"  id="user-dropdown" data-toggle="dropdown" aria-haspopup="true">
-              <i class="fas fa-lg fa-user-circle"></i>
-              <span class="font-weight-bold">{{ user.name | e }}</span>
-            </button>
-            <div class="dropdown-menu dropdown-menu-right mt-0" aria-labelledby="user-dropdown">
-              <a class="dropdown-item" href="/mi-cuenta"><i class="fas fa-user">&nbsp;</i>Mi Cuenta</a>
-              <a class="dropdown-item" href="/logout"><i class="fas fa-power-off">&nbsp;</i>Cerrar Sesión</a>
-            </div>
+      <a class="navbar-brand btn btn-primary border border-warning rounded-0" href="/" id="poccel-icon">Poccel</a>
+
+      {% if user %}
+        <div class="btn-group float-right">
+          <button type="button" class="btn btn-light dropdown-toggle" id="user-dropdown" data-toggle="dropdown" aria-haspopup="true">
+            <i class="fas fa-lg fa-user-circle mr-1"></i>
+            <span class="font-weight-bold">{{ user.name | e }}</span>
+          </button>
+          <div class="dropdown-menu dropdown-menu-right mt-0" aria-labelledby="user-dropdown">
+            <a class="dropdown-item btn-light" href="/mi-cuenta"><i class="fas fa-user mr-2"></i>Mi Cuenta</a>
+            <a class="dropdown-item btn-light" href="/logout"><i class="fas fa-power-off mr-2"></i>Cerrar Sesión</a>
           </div>
-        {% else %}
-          <a href="/login" class="btn btn-outline-primary btn-sm">
-            <i class="fas fa-lg fa-sign-in-alt"></i>
-            <span class="font-weight-bold">Inicia sesión</span>
-          </a>
-        {% endif %}
-        <button id="search-toggle" class="btn btn-light btn-sm" type="button" data-toggle="collapse" data-target="#search-bar" aria-expanded="false">
-          {#<i class="fas fa-sliders-h"></i>#}
-        </button>
-      </div>
+        </div>
+      {% else %}
+        <a href="/login" class="btn btn-light float-right">
+          <i class="fas fa-lg fa-sign-in-alt"></i>
+          <span class="font-weight-bold">Inicia sesión</span>
+        </a>
+      {% endif %}
+
+      <button class="btn btn-light float-right mr-2"
+        data-toggle="collapse" data-target=".multi-navbar-collapse"
+        aria-expanded="true" aria-controls="main-bar search-bar"
+        href="#search-bar">
+        <i class="fas fa-search"></i>
+      </button>
+
     </div>
 
-    <form class="input-group input-group-sm mt-1 collapse" id="search-bar" action="/catalogo" method="GET">
-      <input type="text" name="s" class="form-control" id="q-search" placeholder="Busca tu producto...">
-      <div class="input-group-append">
-        <button id="search-button" type="submit" class="btn btn-outline-primary"><i class="fas fa-search"></i></button>
-      </div>
-    </form>
+    <div class="multi-navbar-collapse collapse w-100" id="search-bar">
 
+      <div class="form-row">
+      
+        <button class="btn btn-light col"
+            data-toggle="collapse" data-target=".multi-navbar-collapse"
+            aria-expanded="false" aria-controls="search-bar main-bar"
+            href="#main-bar">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+
+        <form action="/catalogo" method="get" class="col-10" id="search-form">
+          <input type="text" name="s" class="form-control" placeholder="Busca tu producto...">
+        </form>
+
+        <button class="btn btn-light col" form="search-form">
+          <i class="fas fa-search"></i>
+        </button>
+
+      </div>
+
+    </div>
   </div>
 </nav>
 

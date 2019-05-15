@@ -1,31 +1,3 @@
-<form>
-  <fieldset disabled="disabled">
-
-  <div class="form-row">
-    <div class="col-md-5">
-      <label for="account-id">Número de cuenta</label>
-      <input type="text" class="form-control" id="account-id" value="{{ '%06d'|format(my.id) }}">
-    </div>
-    <div class="col-md-4">
-      <label for="expire">Fecha de corte</label>
-      <input type="date" class="form-control" id="expire" value="{{ my.account.expire }}">
-    </div>
-    <div class="col-md-3">
-      <label for="account-balance">Total a pagar</label>
-      <input type="text" class="form-control" id="account-balance" value="{{ my.account.total }}">
-    </div>
-  </div>
-
-  </fieldset>
-</form>
-
-<div class="form-row mx-1 mb-2 mt-5 justify-content-between">
-  <span class="h5">Detalles de la cuenta</span>
-  <button class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#payModal">
-    <i class="fa fa-credit-card mr-2"></i>Pagar
-  </button>
-</div>
-
 <div class="form-row table-responsive">
   <table class="table table-hover">
     <thead>
@@ -58,7 +30,7 @@
       </tr>
       {% else %}
       <tr class="col-12 text-center">
-        <td colspan="4">No debe ningún producto</td>
+        <td colspan="5">No debe ningún artículo</td>
       </tr>
       {% endfor %}
     </tbody>

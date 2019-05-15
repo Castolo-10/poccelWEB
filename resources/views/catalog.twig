@@ -10,7 +10,7 @@
     {% include 'partials.products' %}
 
     <div class="row justify-content-center my-3">
-      {{ paging|raw }}
+      {{ products.onEachSide(1).links()|raw }}
     </div>
   </div>
 

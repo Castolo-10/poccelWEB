@@ -8,16 +8,21 @@ use \App\Product;
 
 class CatalogController extends Controller
 {
-    function paginate() {
+    function paginate(Request $req) {
     	$pageSize = Input::get('pageSize', env('DEFAULT_PAGE_SIZE'));
-    	$sort = Input::get('sort', null);
-    	$search = Input::get('s', '');
-        $products = Product::paginate($pageSize, $search, $sort);
+        $search = Input::get('s', null);
+
+        $products = Product::paginate($pageSize, $search, $req->sort);
         $products->appends(Input::except('page'));
 
     return view('catalog', [
-        'products' => $products->items(),
-        'paging' => $products->onEachSide(1)->links(),
+        'products' => $products,
+        'options' => [
+            'step' => env('DEFAULT_PAGE_SIZE'),
+            'nPageSize' => env('N_PAGE_SIZE'),
+            'sort' => $req->sort,
+            'search' => $search,
+        ]
     ])->withQuery($pageSize);
 
     }
