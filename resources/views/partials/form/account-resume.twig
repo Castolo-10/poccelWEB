@@ -1,18 +1,19 @@
+{% set user = app.request.user %}
 <form>
   <fieldset disabled="disabled">
 
   <div class="form-row justify-content-between">
     <div class="col-sm-5">
       <label for="account-id">Número de cuenta</label>
-      <input type="text" class="form-control" id="account-id" value="{{ '%06d'|format(my.id) }}">
+      <input type="text" class="form-control" id="account-id" value="{{ '%06d'|format(user.id) }}">
     </div>
     <!--div class="col-md-4">
       <label for="expire">Fecha de corte</label>
-      <input type="date" class="form-control" id="expire" value="{{ my.account.expire }}">
+      <input type="date" class="form-control" id="expire" value="{{ user.account.expire }}">
     </div-->
     <div class="col-sm-5">
       <label for="account-balance">Total a pagar</label>
-      <input type="text" class="form-control" id="account-balance" value="{{ my.account.total }}">
+      <input type="text" class="form-control" id="account-balance" value="{{ user.account.total }}">
     </div>
   </div>
 

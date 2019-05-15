@@ -15,6 +15,8 @@ use App\Http\Middleware\LoadSession;
 use App\Http\Middleware\SessionRequired;
 use App\Http\Middleware\CheckPageSize;
 use App\Http\Middleware\CheckProductSortingCriteria;
+use App\Http\Middleware\CheckLoginFields;
+use App\Http\Middleware\CheckPasswordFields;
 
 
 Route::get('/', 'HomeController')
@@ -24,7 +26,8 @@ Route::get('/login', function () {
     return View::make('login');
 }); // restrict session?
 
-Route::post('/login', 'SessionController@login');
+Route::post('/login', 'SessionController@login')
+	->middleware(CheckLoginFields::class);
 
 Route::get('/logout', 'SessionController@logout');
 
@@ -34,7 +37,14 @@ Route::get('/forgot-password', function () {
 
 Route::get('/reset-password', function () {
     return View::make('reset');
-}); // restrict session?
+});
+
+Route::post('mi-cuenta/cambiar-contrasena', 'MyAccountController@changePassword')
+	->middleware(
+		LoadSession::class,
+		SessionRequired::class,
+		CheckPasswordFields::class
+		);
 
 Route::get('/catalogo', 'CatalogController@paginate')
 	->middleware(

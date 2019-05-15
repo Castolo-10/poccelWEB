@@ -1,3 +1,4 @@
+{% set user=app.request.user %}
 <div class="form-row table-responsive">
   <table class="table table-hover">
     <thead>
@@ -10,7 +11,7 @@
       </tr>
     </thead>
     <tbody>
-      {% for detail in my.account.details %}
+      {% for detail in user.account.details %}
       <tr data-account="{{ detail.id_cuenta }}">
         <td>{{ detail.fecha_compra }}</td>
         <td>{{ detail.saldo }}</td>

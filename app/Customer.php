@@ -45,7 +45,7 @@ class Customer extends Model
     		$customer->id = $data[0]->id_cliente;
 			$customer->email = $data[0]->correo;
 			$customer->birthdate = $data[0]->fecha_nacimiento;
-			$customer->gender = $data[0]->sexo;
+			$customer->gender = \strtoupper($data[0]->sexo);
 			$customer->name = $data[0]->nombre;
 			$customer->p_surname = $data[0]->a_paterno;
 			$customer->m_surname = $data[0]->a_materno;
@@ -62,7 +62,21 @@ class Customer extends Model
     	return null;
 	}
 
-	function paidMethods () {
+	public function isPasswordMatch($passwd) {
+		return DB::table('cliente')->where([
+			['id_cliente', $this->id],
+			['password', $passwd]
+		])->exists();
+	}
+
+	public function updatePassword($passwd) {
+		$res = DB::table('cliente')
+			->where('id_cliente', $this->id)
+			->update(['password' => $passwd]);
+        return $res;
+	}
+
+	public function paidMethods () {
 		$data = DB::table('info_pago')
 			->where('id_cliente', $this->id)
 			->orderBy('fecha', 'desc')
@@ -78,7 +92,7 @@ class Customer extends Model
 			}
 		}
 		$this->account['cc_info'] = $cc_info;
-		return $cc_info;
+		return $this;
 	}
 
 	public function accountDetails () {
@@ -90,6 +104,7 @@ class Customer extends Model
 		$this->account['details'] = array_merge($data_sucursal_1, $data_sucursal_2);
 		
 		$this->account['total'] = $this->calcTotal();
+		return $this;
 	}
 
 	private function accountDetailsBySucursal ($db_conn) {

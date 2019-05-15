@@ -1,36 +1,37 @@
+{% set user = app.request.user %}
 <form>
   <fieldset disabled="disabled">
 
   <div class="form-row">
     <div class="col-md-4">
       <label for="name">Nombre(s)</label>
-      <input type="text" class="form-control" id="name" value="{{ my.name | e }}">
+      <input type="text" class="form-control" id="name" value="{{ user.name | e }}">
     </div>
     <div class="col-md-4">
       <label for="f-lastname">Apellido Paterno</label>
-      <input type="text" class="form-control" id="f-lastname" value="{{ my.p_surname | e }}">
+      <input type="text" class="form-control" id="f-lastname" value="{{ user.p_surname | e }}">
     </div>
     <div class="col-md-4">
       <label for="m-lastname">Apellido Materno</label>
-      <input type="text" class="form-control" id="m-lastname" value="{{ my.m_surname | e }}">
+      <input type="text" class="form-control" id="m-lastname" value="{{ user.m_surname | e }}">
     </div>
   </div>
 
   <div class="form-row">
     <div class="form-group col-12">
       <label for="email">Correo electrónico</label>
-      <input type="text" class="form-control" id="email" value="{{ my.email | e }}">
+      <input type="text" class="form-control" id="email" value="{{ user.email | e }}">
     </div>
   </div>
 
   <div class="form-row">
     <input type="text" class="form-control-plaintext col" value="Sexo:">
     <div class="form-check form-check-inline col">
-      <input class="form-check-input" {{ my.gender == '1'? 'checked': '' }} type="radio" name="inlineRadioOptions" id="sx-male" value="m">
+      <input class="form-check-input" {{ (user.gender == 'M')? 'checked': '' }} type="radio" name="inlineRadioOptions" id="sx-male" value="m">
       <label class="form-check-label" for="sx-male">Masculino</label>
     </div>
     <div class="form-check form-check-inline col">
-      <input class="form-check-input" {{ my.gender == '0'? 'checked': '' }} type="radio" name="inlineRadioOptions" id="sx-female" value="f">
+      <input class="form-check-input" {{ (user.gender == 'F')? 'checked': '' }} type="radio" name="inlineRadioOptions" id="sx-female" value="f">
       <label class="form-check-label" for="sx-female">Femenino</label>
     </div>
   </div>
@@ -38,18 +39,18 @@
   <div class="form-row">
     <div class="form-group col-12">
       <label for="b-date"> Fecha de nacimiento</label>
-      <input id="b-date" type="date" class="form-control" value="{{ my.birthdate }}">
+      <input id="b-date" type="date" class="form-control" value="{{ user.birthdate }}">
     </div>
   </div>
 
   <div class="form-row">
     <div class="col-md-6">
       <label for="phone">Teléfono fijo</label>
-      <input type="text" class="form-control" id="phone" value="{{ my.phone | e }}">
+      <input type="text" class="form-control" id="phone" value="{{ user.phone | e }}">
     </div>
     <div class="col-md-6">
       <label for="cellphone">Teléfono celular</label>
-      <input type="text" class="form-control" id="cellphone" value="{{ (my.cellphone? my.cellphone : 'N/D') | e }}">
+      <input type="text" class="form-control" id="cellphone" value="{{ (user.cellphone? user.cellphone : 'N/D') | e }}">
     </div>
   </div>
 

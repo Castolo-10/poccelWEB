@@ -1,0 +1,26 @@
+{% for msg in errors.messages %}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <span>{{ msg[0] }}</span>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endfor %}
+
+{% for msg in session_get('info') %}
+<div class="alert alert-info alert-dismissible fade show" role="alert">
+  <span>{{ msg }}</span>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endfor %}
+
+{% for msg in session_get('success') %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <span>{{ msg }}</span>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endfor %}

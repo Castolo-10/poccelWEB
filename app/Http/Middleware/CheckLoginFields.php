@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class SessionRequired
+class CheckLoginFields
 {
     /**
      * Handle an incoming request.
@@ -15,9 +15,10 @@ class SessionRequired
      */
     public function handle($request, Closure $next)
     {
-        if (!$request->user) {
-            return redirect('/login')->withMessage('You need to be logged!');
-        }
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
         return $next($request);
     }
 }

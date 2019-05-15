@@ -20,10 +20,7 @@ class SessionController extends Controller
 			return redirect('');
     	}
 
-		return view('login', [
-			'error' => [
-				'subject' => 'Login Error',
-				'msg' => 'Invalid email or password']]);
+		return view('login')->withErrors('Invalid email or password');
     }
 
     function logout() {
