@@ -13,6 +13,11 @@
   background-color: var(--primary);
 }
 
+#poccel-icon:focus,
+#poccel-icon.focus {
+  box-shadow: none;
+}
+
 #poccel-icon {
   color: var(--yellow);
   font-style: normal;
@@ -32,7 +37,8 @@ body {
 
 .navbar .btn-light:hover,
 .navbar .btn-light:active,
-.navbar .btn-light.active {
+.navbar .btn-light.active,
+.navbar .show>.btn-light.dropdown-toggle {
   color: #555;
   background-color: transparent !important;
 }
