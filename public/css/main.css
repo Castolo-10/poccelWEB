@@ -42,14 +42,15 @@ body {
 }
 
 .navbar .btn-light:hover,
-.navbar .btn-light:active,
-.navbar .btn-light.active,
-.navbar .show>.btn-light.dropdown-toggle,
+.navbar .btn-light:active:not(.dropdown-item),
+.navbar .btn-light.active:not(.dropdown-item),
+.navbar .show>.btn-light.dropdown-toggle
 {
   color: #555;
   background-color: transparent !important;
 }
 
+.navbar .dropdown-item:hover,
 .catalog-filters .btn-light:hover,
 .catalog-filters .btn-light:active,
 .catalog-filters .btn-light.active {
