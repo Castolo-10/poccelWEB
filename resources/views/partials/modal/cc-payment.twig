@@ -15,37 +15,44 @@
         </button>
       </div>
       <div class="modal-body pt-0 mx-3">
-        <form>
+        <form action="/mi-cuenta/abonar" method="post">
+          {{ csrf_field() }}
+          <input type="hidden" name="account_id" id="acc-id">
           <div class="form-row">
             <div class="form-group col-12 my-0">
               <label for="cc-titular">Nombre del titular</label>
-              <input type="text" class="form-control" id="cc-titular" required>
+              <input type="text" class="form-control" name="cc_titular" id="cc-titular" required>
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-12 my-0">
               <label for="cc-number">Número de tarjeta</label>
-              <input type="text" class="form-control" id="cc-number" required>
+              <input type="text" class="form-control" name="cc_number" id="cc-number" required>
             </div>
           </div>
           <div class="form-row justify-content-between">
             <div class="form-group col-7 my-0">
               <label for="cc-exp">Fecha de expiración</label>
-              <input type="month" class="form-control" id="cc-exp" min="2019-03" required>
+              <input type="month" class="form-control" name="cc_exp" min="2019-05" id="cc-exp" required>
             </div>
             <div class="form-group col-5">
               <label for="cc-code">Código de seguridad</label>
-              <input text="number" class="form-control" id="cc-code" placeholder="3 dígitos" required>
+              <input type="number" class="form-control" name="cc_code" placeholder="3 dígitos" id="cc-code" min="000" max="999" required>
             </div>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="cc-save">
+            <input class="form-check-input" type="checkbox" name="cc_save" id="cc-save" required>
             <label class="form-check-label" for="cc-save">Autorizo guardar este método de pago</label>
           </div>
           <hr/>
-          <div class="form-row d-flex justify-content-end">
-            <button class="btn btn-primary btn-sm col-sm-6 "><i class="fa fa-credit-card mr-2"></i>Pagar</button>
+          <label for="cc-pay" class="on-top">Cantidad a abonar</label>
+          <div class="input-group mb-3">
+            <input class="form-control col rounded" type="number" name="amount" id="cc-pay" min=".1" step=".1" required>
+            <div class="input-group-append col">
+              <button type="submit" class="btn btn-secondary col rounded"><i class="fa fa-credit-card mr-2"></i>Abonar</button>
+            </div>
           </div>
+
         </form>
       </div>
     </div>

@@ -18,6 +18,10 @@
   box-shadow: none;
 }
 
+label.on-top {
+  z-index: 10;
+}
+
 #poccel-icon {
   color: var(--yellow);
   font-style: normal;
@@ -156,6 +160,7 @@ a.more::after {
   border-radius: 2px;
   background-color: rgba(128,128,128,.7);
   position: relative;
+  text-transform: uppercase;
   top: 15px;
   left: 10px;
 }

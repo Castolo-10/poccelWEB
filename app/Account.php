@@ -12,6 +12,15 @@ class Account extends Model
     public $total;
     public $info;
     public $details = [];
+    public $conn;
+
+    private $formatter;
+	private $curr;
+
+	public function __construct() {
+		$this->formatter = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
+		$this->curr = 'USD';
+	}
 
     public static function allByUser ($id) {
 		$data_sucursal_1 = Account::bySucursal(
@@ -25,10 +34,10 @@ class Account extends Model
 		return $acc;
 	}
 
-	public static function get($accId, $userId) {
-		$conn = Account::searchConnection($accId);
+	public function get($accId, $userId) {
+		$this->conn = Account::searchConnection($accId);
 
-		$data = DB::connection($conn)
+		$data = DB::connection($this->conn)
 			->table('cuenta')
 			->leftJoin('venta', 'venta.id_venta', 'cuenta.id_venta')
 			->leftJoin('abono', 'cuenta.id_cuenta', 'abono.id_cuenta')
@@ -45,25 +54,42 @@ class Account extends Model
 			->get();
 
 		if (count($data)) {
-			$acc = new Account();
-			$acc->info = $data[0];
-			$acc->loadDetails($conn);
-			return $acc;
+			$this->info = $data[0];
+			return $this;
 		}
 
 		return null;
 	}
 
-	private function loadDetails($conn) {
+	/* abonar */
+	public function credit($amount) {
+		$debt = $this->formatter->parseCurrency($this->info->restante, $this->curr);
+
+		if ($amount <= $debt) {
+			$nextId = DB::selectOne("SELECT nextval('abono_id_abono_seq') AS val")->val;
+			return DB::connection($this->conn)
+				->table('abono')
+				->insert([
+					'id_abono' => $nextId,
+					'id_cuenta' => $this->info->id_cuenta,
+					'cantidad' => $amount,
+					'fecha' => date('Y-m-d'),
+					]);
+		} else {
+			return false;
+		}
+	}
+
+	public function loadDetails() {
 		/* abonos */
-		$this->details['credit'] = DB::connection($conn)
+		$this->details['credit'] = DB::connection($this->conn)
 			->table('abono')
 			->where('id_cuenta', $this->info->id_cuenta)
 			->orderBy('fecha', 'desc')
 			->get();
 		
 		/* detalle compra */
-		$items = DB::connection($conn)
+		$items = DB::connection($this->conn)
 			->table('lista_prod')
 			->select(
 				'id_producto',
@@ -110,14 +136,12 @@ class Account extends Model
 	}
 
 	private function calcTotal () {
-		$formatter = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
-		$curr = 'USD';
 		$total = 0.0;
 		foreach ($this->list as $acc) {
-			$currency = $formatter->parseCurrency($acc->restante, $curr);
+			$currency = $this->formatter->parseCurrency($acc->restante, $this->curr);
 			$total += $currency;
 		}
-		$this->total = $formatter->formatCurrency($total, $curr);
+		$this->total = $this->formatter->formatCurrency($total, $this->curr);
 		return $this->total;
 	}
 }

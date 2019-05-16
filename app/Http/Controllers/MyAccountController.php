@@ -23,7 +23,29 @@ class MyAccountController extends Controller
     }
 
     public function details(Request $req, $accId) {
-        $acc = Account::get($accId, $req->user->id);
-        return view('acc-details', ['account' => $acc]);
+        $acc = new Account();
+        if ($acc->get($accId, $req->user->id)) {
+            $acc->loadDetails();
+        }
+        return view('acc-details', [
+            'account' => $acc
+        ]);
+    }
+
+    public function credit(Request $req) {
+        $accId = Input::get('account_id');
+        $amount = Input::get('amount');
+        
+        $acc = new Account();
+
+        if ($acc->get($accId, $req->user->id)) {
+            if ($acc->credit($amount)) {
+                return redirect('/mi-cuenta')->with('success', ['Payment has been registered!']);
+            } else {
+                return redirect('/mi-cuenta')->withErrors('Unable to register your payment!');
+            }
+        } else {
+            return redirect('/mi-cuenta')->withErrors('Account doesn\'t exists!');
+        }
     }
 }

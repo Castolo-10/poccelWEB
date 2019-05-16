@@ -5,25 +5,27 @@
       <tr>
         <th scope="col">Fecha de Compra</th>
         <th scope="col">Saldo</th>
-        <th scope="col">Abonado</th>
-        <th scope="col">Adeudo</th>
+        <th scope="col">Abonos</th>
+        <th scope="col">Restan</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
       {% for acc in user.account.list %}
-      <tr data-account="{{ acc.id_cuenta }}">
+      <tr>
         <td>{{ acc.fecha_compra }}</td>
         <td>{{ acc.saldo }}</td>
         <td>{{ acc.abonado }}</td>
         <td>{{ acc.restante }}</td>
         <td>
           <div class="btn-group">
-            <a class="btn btn-outline-primary btn-sm" href="/mi-cuenta/detalles/{{ acc.id_cuenta }}">
+            <a class="btn btn-outline-primary btn-sm" href="/mi-cuenta/{{ acc.id_cuenta }}/detalles">
               <i class="fa fa-info-circle"></i>
             </a>
             <button class="btn btn-outline-secondary btn-sm"
-              data-toggle="modal" data-target="#payModal" title="Abonar">
+              data-toggle="modal" data-target="#payModal"
+              data-account="{{ acc.id_cuenta }}"
+              title="Abonar">
               <i class="fa fa-credit-card"></i>
             </button>
           </div>
