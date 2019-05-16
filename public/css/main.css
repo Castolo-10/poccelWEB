@@ -129,14 +129,17 @@ a.more::after {
 
 /* catalogo */
 .item-container .card-title {
-  font-variant: small-caps;
+  
 }
 
 .item-container .card {
   margin: .5em 0;
+  border: 1px solid #ddd;
 }
 
-.item-container .card:hover {
+.item-container .card:hover,
+.modal .img-fluid:hover
+{
   transition: box-shadow ease .2s;
   -webkit-transition: box-shadow ease .2s;
   -moz-transition: box-shadow ease .2s;
@@ -146,11 +149,15 @@ a.more::after {
 .item-container .card img {
   height: 170px;
   object-fit: cover;
+  border-bottom: 1px solid #ddd;
 }
 
 .modal .img-fluid {
   width: 100%;
   height: auto;
+  margin-bottom: 1em;
+  border: 1px solid #ddd;
+  border-radius: .3em;
 }
 
 @media screen and (max-width: 576px) {
