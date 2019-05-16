@@ -17,7 +17,7 @@ class MyAccountController extends Controller
     public function changePassword(Request $req) {
     	$success = $req->user->updatePassword(Input::get('new_password'));
     	if (!$success) {
-    		return redirect('/mi-cuenta')->withErrors('Unable to change your password!');
+    		return redirect('/mi-cuenta')->withErrors('Unable to change password!');
     	}
     	return redirect('/mi-cuenta')->with('success', ['Password has been changed!']);
     }
@@ -26,10 +26,12 @@ class MyAccountController extends Controller
         $acc = new Account();
         if ($acc->get($accId, $req->user->id)) {
             $acc->loadDetails();
+            return view('acc-details', [
+                'account' => $acc
+            ]);
         }
-        return view('acc-details', [
-            'account' => $acc
-        ]);
+
+        return view('acc-details')->withErrors('Account doesn\'t exists!');
     }
 
     public function credit(Request $req) {
