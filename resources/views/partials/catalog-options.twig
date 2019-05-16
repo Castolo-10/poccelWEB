@@ -48,6 +48,8 @@
 
 {% if options.search %}
 <div class="row text-center">
-  <p class="text-muted col-12">Se encontraron <strong>{{ products.total() }}</strong> artículos en la búsqueda: <i>{{ options.search|e }}</i></p>
+  <p class="text-muted col-12">
+    Se encontraron <strong>{{ products.total() }}</strong> resultados de la búsqueda: <strong>"{{ options.search|e }}"</strong> 
+  </p>
 </div>
 {% endif %}

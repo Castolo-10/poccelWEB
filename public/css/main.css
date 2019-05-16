@@ -62,7 +62,7 @@ body {
 
 .catalog-filters .btn-light:active,
 .catalog-filters .btn-light.active {
-  background: rgba(255,255,255, 0.70) !important;
+  background: rgba(255,255,255, 0.7) !important;
 }
 
 main {
@@ -78,12 +78,13 @@ main.extended {
 }
 
 footer.page-footer {
-  background-color: rgba(88,88,88,.2);
-  color: rgba(255,255,255);
+  background-color: #fff;
+  color: var(--primary);
+  box-shadow: 0 -2px 4px rgba(0,0,0,.04)
 }
 
 footer.page-footer a {
-  color: #fff;
+  color: var(--indigo);
 }
 
 #search-toggle::before, a.more::after {
