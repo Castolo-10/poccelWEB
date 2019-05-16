@@ -23,7 +23,7 @@
     </div>
 
     <div class="card border-gray mt-2">
-      <h5 class="card-header">Artículos adquiridos</h5>
+      <h5 class="card-header">Productos adquiridos</h5>
       <div class="card-body pt-0">
       {% include 'partials.form.account.details.purchase' %}
       </div>
@@ -44,9 +44,8 @@
       </div>
     </div>
 
+    {% include 'partials.modal.cc-payment' %}
   </div>
-
-  {% include 'partials.modal.cc-payment' %}
 
 {% endblock %}
 

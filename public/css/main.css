@@ -70,7 +70,7 @@ main {
   transition: margin ease 0.25s;
   -webkit-transition: margin ease 0.25s;
   -moz-transition: margin ease 0.25s;
-  min-height: 80vh;
+  min-height: 79vh;
 }
 
 main.extended {
@@ -202,4 +202,15 @@ a.more::after {
 .slide-title, .slide-text {
   background-color: rgba(52,144,220,0.4);
   border-radius: 3px;
+}
+
+/* quitar estilos de input[type="number"] */
+input[type='number'] {
+  -moz-appearance:textfield;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

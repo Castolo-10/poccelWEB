@@ -1,12 +1,12 @@
 <form class="mb-2 mt-0 catalog-filters" action="/catalogo" method="get">
   <div class="form-row">
     <div class="col-md-6 col-sm-12">
-      <label for="search-filter">Buscar artículos</label>
-      <input type="search" name="s" class="form-control" value="{{ options.search ? options.search : '' }}" id="search-filter">
+      <label for="search-filter">Buscar productos</label>
+      <input type="search" name="s" class="form-control" value="{{ options.search ? options.search : '' }}" id="search-filter" placeholder="Nombre o descripción">
     </div>
 
     <div class="col-md-3 col-sm-6">
-      <label for="per-page">Articulos por página</label>
+      <label for="per-page">Productos por página</label>
       <select name="pageSize" class="form-control" id="per-page">
         {% for i in 1..options.nPageSize %}
         <option {{ (i*options.step) == (products.perPage()) ? 'selected' : '' }}>{{ i*options.step }}</option>
@@ -29,14 +29,14 @@
 
     <div class="btn-group-toggle mx-2" data-toggle="buttons" title="Orden">
       <label class="btn btn-light dummy-label {{ options.sort.order == 'desc' ? 'active' : '' }}" id="toggle-order">
-        <input type="checkbox" name="desc" autocomplete="off">
+        <input type="checkbox" name="desc" autocomplete="off" {{ options.sort.order == 'desc' ? 'checked' : '' }} >
         <i class="fas fa-sort-amount-{{ options.sort.order == 'desc' ? 'down' : 'up' }}"></i>
       </label>
     </div>
 
-    <a class="btn btn-light mx-2" href="/catalogo" title="Limpiar filtros">
+    <button type="reset" class="btn btn-light mx-2" title="Reiniciar filtros">
       <i class="fas fa-broom"></i>
-    </a>
+    </button>
 
     <button type="submit" class="btn btn-light mx-2" title="Aplicar filtros">
       <i class="fas fa-filter"></i>
@@ -49,7 +49,7 @@
 {% if options.search %}
 <div class="row text-center">
   <p class="text-muted col-12">
-    Se encontraron <strong>{{ products.total() }}</strong> resultados de la búsqueda: <strong>"{{ options.search|e }}"</strong> 
+    Se obtuvieron <strong>{{ products.total() }}</strong> resultados de la búsqueda: <strong>"{{ options.search|e }}"</strong> 
   </p>
 </div>
 {% endif %}
