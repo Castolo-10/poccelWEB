@@ -17,6 +17,7 @@ use App\Http\Middleware\CheckPageSize;
 use App\Http\Middleware\CheckProductSortingCriteria;
 use App\Http\Middleware\CheckLoginFields;
 use App\Http\Middleware\CheckPasswordFields;
+use App\Http\Middleware\CheckPaymentFields;
 
 
 Route::get('/', 'HomeController')
@@ -41,8 +42,8 @@ Route::get('/catalogo', 'CatalogController@paginate')
 Route::post('/mi-cuenta/abonar', 'MyAccountController@credit')
 	->middleware(
 		LoadSession::class,
-		SessionRequired::class/*,
-		CheckPaymentFields::class*/
+		SessionRequired::class,
+		CheckPaymentFields::class
 	);
 
 Route::get('/mi-cuenta/{accId}/detalles', 'MyAccountController@details')

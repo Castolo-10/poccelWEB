@@ -86,6 +86,7 @@ class Account extends Model
 			->table('abono')
 			->where('id_cuenta', $this->info->id_cuenta)
 			->orderBy('fecha', 'desc')
+			->orderBy('id_abono', 'desc')
 			->get();
 		
 		/* detalle compra */

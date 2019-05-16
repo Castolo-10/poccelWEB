@@ -19,6 +19,7 @@ class CheckPasswordFields
         $request->validate([
             'password' => 'required|max:100',
             'new_password' => 'required|max:100',
+            'repeat_password' => 'required|max:100|same:new_password'
         ]);
         
         if ($request->user->isPasswordMatch(Input::get('password'))) {
