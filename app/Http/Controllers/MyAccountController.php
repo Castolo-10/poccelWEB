@@ -37,14 +37,15 @@ class MyAccountController extends Controller
     public function credit(Request $req) {
         $accId = Input::get('account_id');
         $amount = Input::get('amount');
+        $redirectTo = '/mi-cuenta/'.$accId.'/detalles';
 
         $acc = new Account();
 
         if ($acc->get($accId, $req->user->id)) {
             if ($acc->credit($amount)) {
-                return redirect('/mi-cuenta')->with('success', ['Payment has been registered!']);
+                return redirect($redirectTo)->with('success', ['Payment has been registered!']);
             } else {
-                return redirect('/mi-cuenta')->withErrors('Unable to register payment!');
+                return redirect($redirectTo)->withErrors('Unable to register payment!');
             }
         } else {
             return redirect('/mi-cuenta')->withErrors('Account doesn\'t exists!');
