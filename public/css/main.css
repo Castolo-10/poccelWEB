@@ -34,7 +34,9 @@ body {
   background-color: #eee;
 }
 
-.navbar .btn-light {
+.navbar .btn-light,
+.catalog-filters .btn-light
+{
   color: #888;
   background: transparent;
 }
@@ -42,9 +44,25 @@ body {
 .navbar .btn-light:hover,
 .navbar .btn-light:active,
 .navbar .btn-light.active,
-.navbar .show>.btn-light.dropdown-toggle {
+.navbar .show>.btn-light.dropdown-toggle,
+{
   color: #555;
   background-color: transparent !important;
+}
+
+.catalog-filters .btn-light:hover,
+.catalog-filters .btn-light:active,
+.catalog-filters .btn-light.active {
+  color: #555;
+}
+
+.catalog-filters .btn-light:hover {
+  background: rgba(255,255,255, 0.5) !important;
+}
+
+.catalog-filters .btn-light:active,
+.catalog-filters .btn-light.active {
+  background: rgba(255,255,255, 0.70) !important;
 }
 
 main {
@@ -144,15 +162,21 @@ a.more::after {
   font-weight: 700;
 }
 
-/* mi cuenta */
+/* labels */
 #myAccount input[type="text"],
 #myAccount input[type="date"],
-#myAccount input[type="month"]
+#myAccount input[type="month"],
+.catalog-filters input
 {
   padding-top: .6em;
 }
 
-#myAccount label:not(.form-check-label):not(.input-group-text)
+.dummy-label {
+  z-index: -1;
+}
+
+#myAccount label:not(.form-check-label):not(.input-group-text),
+.catalog-filters label:not(.dummy-label)
 {
   font-size: .65em;
   color: white;

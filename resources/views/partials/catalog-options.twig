@@ -1,19 +1,12 @@
-<form class="mb-4 catalog-filters" action="/catalogo" method="get">
+<form class="mb-2 mt-0 catalog-filters" action="/catalogo" method="get">
   <div class="form-row">
-    <div class="col">
-      <input type="search" name="s" class="form-control" value="{{ options.search ? options.search : '' }}">
-    </div>
-    <div class="col">
-      <!--label class="inline">Ordenar por</label-->
-      <select name="sort" class="form-control">
-        <option value="">Default</option>
-        <option value="name" {{ options.sort.by == 'name' ? 'selected': '' }}>Nombre</option>
-        <option value="price" {{ options.sort.by == 'price' ? 'selected': '' }}>Precio</option>
-      </select>
+    <div class="col-md-6 col-sm-12">
+      <label for="search-filter">Buscar artículos</label>
+      <input type="search" name="s" class="form-control" value="{{ options.search ? options.search : '' }}" id="search-filter">
     </div>
 
-    <div class="col">
-      <!--label for="per-page">Articulos por página</label-->
+    <div class="col-md-3 col-sm-6">
+      <label for="per-page">Articulos por página</label>
       <select name="pageSize" class="form-control" id="per-page">
         {% for i in 1..options.nPageSize %}
         <option {{ (i*options.step) == (products.perPage()) ? 'selected' : '' }}>{{ i*options.step }}</option>
@@ -21,21 +14,36 @@
         <option value="-1" {{ (products.perPage() < 0)? 'selected' : '' }}>Todos</option>
       </select>
     </div>
-    <div class="col">
-      <div class="btn-group-toggle" data-toggle="buttons">
-        <label class="btn btn-light {{ options.sort.order == 'desc' ? 'active' : '' }}">
-          <input type="checkbox" name="desc" autocomplete="off">
-          <i class="fas fa-sort-amount-down" title="Orden ascendente"></i>
-        </label>
-      </div>
-    </div>
 
-    <div class="col">
-      <button type="submit" class="btn btn-light" title="Aplicar filtros">
-        <i class="fas fa-filter"></i>
-      </button>
+    <div class="col-md-3 col-sm-6">
+      <label for="sort-by">Ordenar por</label>
+      <select name="sort" class="form-control" id="sort-by">
+        <option value="">Default</option>
+        <option value="name" {{ options.sort.by == 'name' ? 'selected': '' }}>Nombre</option>
+        <option value="price" {{ options.sort.by == 'price' ? 'selected': '' }}>Precio</option>
+      </select>
     </div>
   </div>
+
+  <div class="form-row mt-2 justify-content-end">
+
+    <div class="btn-group-toggle mx-2" data-toggle="buttons" title="Orden">
+      <label class="btn btn-light dummy-label {{ options.sort.order == 'desc' ? 'active' : '' }}" id="toggle-order">
+        <input type="checkbox" name="desc" autocomplete="off">
+        <i class="fas fa-sort-amount-{{ options.sort.order == 'desc' ? 'down' : 'up' }}"></i>
+      </label>
+    </div>
+
+    <a class="btn btn-light mx-2" href="/catalogo" title="Limpiar filtros">
+      <i class="fas fa-broom"></i>
+    </a>
+
+    <button type="submit" class="btn btn-light mx-2" title="Aplicar filtros">
+      <i class="fas fa-filter"></i>
+    </button>
+
+  </div>
+
 </form>
 
 {% if options.search %}
