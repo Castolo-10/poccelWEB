@@ -208,8 +208,7 @@ a.more::after {
 }
 
 .slide-title, .slide-text {
-  background-color: rgba(52,144,220,0.4);
-  border-radius: 3px;
+  
 }
 
 /* quitar estilos de input[type="number"] */
