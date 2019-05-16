@@ -30,11 +30,27 @@
     </div>
 
     <div class="card border-gray mt-2">
-      <h5 class="card-header">Abonos efectuados</h5>
+      <h5 class="card-header">
+        <span>Abonos efectuados</span>
+        <button class="btn btn-outline-secondary btn-sm float-right"
+          data-toggle="modal" data-target="#payModal"
+          data-account="{{ account.info.id_cuenta }}"
+          title="Abonar">
+          <i class="fa fa-credit-card mr-2"></i>Abonar
+        </button>
+      </h5>
       <div class="card-body pt-0">
       {% include 'partials.form.account.details.credit' %}
       </div>
     </div>
 
   </div>
+
+  {% include 'partials.modal.cc-payment' %}
+
+{% endblock %}
+
+{% block scripts %}
+  {{ parent() }}
+  <script src="{{ asset('js/cc-payment.js') }}"></script>
 {% endblock %}
