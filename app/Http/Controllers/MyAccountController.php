@@ -17,9 +17,9 @@ class MyAccountController extends Controller
     public function changePassword(Request $req) {
     	$success = $req->user->updatePassword(Input::get('new_password'));
     	if (!$success) {
-    		return redirect('/mi-cuenta')->withErrors('Unable to change password!');
+    		return redirect()->back()->withErrors('Unable to change password!');
     	}
-    	return redirect('/mi-cuenta')->with('success', ['Password has been changed!']);
+    	return redirect()->back()->with('success', ['Password has been changed!']);
     }
 
     public function details(Request $req, $accId) {
@@ -31,24 +31,23 @@ class MyAccountController extends Controller
             ]);
         }
 
-        return view('acc-details')->withErrors('Account doesn\'t exists!');
+        return redirect()->back()->withErrors('Account doesn\'t exists!'); //view('acc-details')->withErrors('Account doesn\'t exists!');
     }
 
     public function credit(Request $req) {
         $accId = Input::get('account_id');
         $amount = Input::get('amount');
-        $redirectTo = '/mi-cuenta/'.$accId.'/detalles';
 
         $acc = new Account();
 
         if ($acc->get($accId, $req->user->id)) {
             if ($acc->credit($amount)) {
-                return redirect($redirectTo)->with('success', ['Payment has been registered!']);
+                return redirect()->back()->with('success', ['Payment has been registered!']);
             } else {
-                return redirect($redirectTo)->withErrors('Unable to register payment!');
+                return redirect()->back()->withErrors('Unable to register payment!');
             }
         } else {
-            return redirect('/mi-cuenta')->withErrors('Account doesn\'t exists!');
+            return redirect()->back()->withErrors('Account doesn\'t exists!');
         }
     }
 }

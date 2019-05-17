@@ -20,7 +20,7 @@ class SessionController extends Controller
 			return redirect('');
     	}
 
-		return view('login')->withErrors('Invalid email or password');
+		return redirect()->back()->withErrors('Invalid email or password');//view('login')->withErrors('Invalid email or password');
     }
 
     function logout() {
