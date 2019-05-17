@@ -46,7 +46,7 @@ Route::post('/mi-cuenta/abonar', 'MyAccountController@credit')
 		CheckPaymentFields::class
 	);
 
-Route::get('/mi-cuenta/{accId}/detalles', 'MyAccountController@details')
+Route::get('/mi-cuenta/ver/{accId}/detalles', 'MyAccountController@details')
 	->middleware(
 		LoadSession::class,
 		SessionRequired::class
