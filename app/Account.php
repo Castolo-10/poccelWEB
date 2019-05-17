@@ -88,6 +88,7 @@ class Account extends Model
 			->where('id_cuenta', $this->info->id_cuenta)
 			->orderBy('fecha', 'desc')
 			->orderBy('id_abono', 'desc')
+			->limit(env('DEFAULT_PAGE_SIZE'))
 			->get();
 		
 		/* detalle compra */
