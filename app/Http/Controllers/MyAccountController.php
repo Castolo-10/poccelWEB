@@ -23,8 +23,8 @@ class MyAccountController extends Controller
     }
 
     public function details(Request $req, $accId) {
-        $acc = new Account();
-        if ($acc->get($accId, $req->user->id)) {
+        $acc = Account::get($accId, $req->user->id);
+        if ($acc) {
             $acc->loadDetails();
             return view('acc-details', [
                 'account' => $acc
@@ -38,9 +38,9 @@ class MyAccountController extends Controller
         $accId = Input::get('account_id');
         $amount = Input::get('amount');
 
-        $acc = new Account();
+        $acc = Account::get($accId, $req->user->id);
 
-        if ($acc->get($accId, $req->user->id)) {
+        if ($acc) {
             if ($acc->credit($amount)) {
                 return redirect()->back()->with('success', ['Payment has been registered!']);
             } else {

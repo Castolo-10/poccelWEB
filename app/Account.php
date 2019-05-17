@@ -34,10 +34,11 @@ class Account extends Model
 		return $acc;
 	}
 
-	public function get($accId, $userId) {
-		$this->conn = Account::searchConnection($accId);
+	public static function get($accId, $userId) {
+		$acc = new Account();
+		$acc->conn = Account::searchConnection($accId);
 
-		$data = DB::connection($this->conn)
+		$data = DB::connection($acc->conn)
 			->table('cuenta')
 			->leftJoin('venta', 'venta.id_venta', 'cuenta.id_venta')
 			->leftJoin('abono', 'cuenta.id_cuenta', 'abono.id_cuenta')
@@ -54,8 +55,8 @@ class Account extends Model
 			->get();
 
 		if (count($data)) {
-			$this->info = $data[0];
-			return $this;
+			$acc->info = $data[0];
+			return $acc;
 		}
 
 		return null;
