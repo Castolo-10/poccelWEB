@@ -63,22 +63,42 @@ class Account extends Model
 	}
 
 	/* abonar */
-	public function credit($amount) {
+	public function credit($amount, $ccInfo) {
 		$debt = $this->formatter->parseCurrency($this->info->restante, $this->curr);
 
 		if ($amount <= $debt) {
 			$nextId = DB::selectOne("SELECT nextval('abono_id_abono_seq') AS val")->val;
-			return DB::connection($this->conn)
+			DB::connection($this->conn)->beginTransaction();
+			$success = DB::connection($this->conn)
 				->table('abono')
 				->insert([
 					'id_abono' => $nextId,
 					'id_cuenta' => $this->info->id_cuenta,
 					'cantidad' => $amount,
 					'fecha' => date('Y-m-d'),
+				]);
+			if ($success) {
+				DB::beginTransaction();
+				$success = DB::table('info_pago')
+					->insert([
+						'id_cliente' => $ccInfo->customer,
+						'numero_tarjeta' => $ccInfo->cc_number,
+						'expiracion' => $ccInfo->cc_exp,
+						'fecha' => date('Y-m-d'),
 					]);
-		} else {
-			return false;
+				if ($success) {
+					DB::connection($this->conn)->commit();
+					DB::commit();
+					return true;
+				} else {
+					DB::connection($this->conn)->rollback();
+					DB::rollback();
+				}
+			} else {
+				DB::connection($this->conn)->rollback();
+			}
 		}
+		return false;
 	}
 
 	public function loadDetails() {

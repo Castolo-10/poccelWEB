@@ -37,11 +37,16 @@ class MyAccountController extends Controller
     public function credit(Request $req) {
         $accId = Input::get('account_id');
         $amount = Input::get('amount');
+        $ccInfo = (object)[
+            'customer' => $req->user->id,
+            'cc_number' => Input::get('credit_card_number'),
+            'cc_exp' => Input::get('credit_card_expiration_date'),
+        ];
 
         $acc = Account::get($accId, $req->user->id);
 
         if ($acc) {
-            if ($acc->credit($amount)) {
+            if ($acc->credit($amount, $ccInfo)) {
                 return redirect()->back()->with('success', ['Payment has been registered!']);
             } else {
                 return redirect()->back()->withErrors('Unable to register payment!');
