@@ -25,7 +25,7 @@ class CheckPasswordFields
         if ($request->user->isPasswordMatch(Input::get('password'))) {
             return $next($request);
         } else {
-            return redirect('/mi-cuenta')->withErrors('Password doesn\'t match');
+            return redirect('/mi-cuenta')->withErrors('Password entered doesn\'t match your current password!');
         }
     }
 }

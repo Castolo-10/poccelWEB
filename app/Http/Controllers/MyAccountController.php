@@ -31,7 +31,7 @@ class MyAccountController extends Controller
             ]);
         }
 
-        return redirect()->back()->withErrors('Account doesn\'t exists!'); //view('acc-details')->withErrors('Account doesn\'t exists!');
+        return redirect()->back()->withErrors('Account doesn\'t exists!');
     }
 
     public function credit(Request $req) {

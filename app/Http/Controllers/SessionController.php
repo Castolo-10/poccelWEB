@@ -15,12 +15,11 @@ class SessionController extends Controller
     	$userId = Customer::attemp($email, $password);
 
     	if ($userId) {
-    		\Cookie::queue(
-    			\Cookie::make('session', $userId));
+    		\Cookie::queue(\Cookie::make('session', $userId));
 			return redirect('');
     	}
 
-		return redirect()->back()->withErrors('Invalid email or password');//view('login')->withErrors('Invalid email or password');
+		return redirect()->back()->withErrors('Invalid email or password');
     }
 
     function logout() {
