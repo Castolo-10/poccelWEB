@@ -160,9 +160,31 @@ a.more::after {
   border-radius: .3em;
 }
 
-@media screen and (max-width: 576px) {
+.poccel-navbar-text,
+.username.only-xs {
+  font-weight: bold;
+}
+
+.username {
+  text-transform: uppercase;
+}
+
+.username.only-xs {
+  color: #888 !important;
+}
+
+@media screen and (max-width: 575px) {
   .item-container .card img {
     height: auto;
+  }
+  .poccel-navbar-text {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 576px) {
+  .only-xs {
+    display: none;
   }
 }
 

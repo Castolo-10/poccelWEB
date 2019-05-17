@@ -99,6 +99,10 @@ class Customer extends Model
 		return $this;
 	}
 
+	public function shortName() {
+		return strtok($this->name, ' ');
+	}
+
 }
 
 

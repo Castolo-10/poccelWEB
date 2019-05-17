@@ -10,24 +10,25 @@
         <div class="btn-group float-right">
           <button type="button" class="btn btn-light dropdown-toggle" id="user-dropdown" data-toggle="dropdown" aria-haspopup="true">
             <i class="fas fa-lg fa-user-circle mr-1"></i>
-            <span class="font-weight-bold">{{ user.name | e }}</span>
+            <span class="poccel-navbar-text username">{{ user.shortName() | e }}</span>
           </button>
           <div class="dropdown-menu dropdown-menu-right mt-0" aria-labelledby="user-dropdown">
+            <a class="dropdown-item btn-light username only-xs disable">{{ user.shortName() }}</a>
             <a class="dropdown-item btn-light" href="/mi-cuenta"><i class="fas fa-user mr-2"></i>Mi Cuenta</a>
             <a class="dropdown-item btn-light" href="/logout"><i class="fas fa-power-off mr-2"></i>Cerrar Sesión</a>
           </div>
         </div>
       {% else %}
-        <a href="/login" class="btn btn-light float-right">
+        <a href="/login" class="btn btn-light float-right" title="Inicia sesión">
           <i class="fas fa-lg fa-sign-in-alt"></i>
-          <span class="font-weight-bold">Inicia sesión</span>
+          <span class="poccel-navbar-text">Inicia sesión</span>
         </a>
       {% endif %}
 
       <button class="btn btn-light float-right mr-2"
         data-toggle="collapse" data-target=".multi-navbar-collapse"
         aria-expanded="true" aria-controls="main-bar search-bar"
-        href="#search-bar" id="show-search-bar">
+        href="#search-bar" id="show-search-bar" title="Busca tus productos">
         <i class="fas fa-search"></i>
       </button>
 
