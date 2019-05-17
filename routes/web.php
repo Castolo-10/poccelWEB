@@ -18,6 +18,7 @@ use App\Http\Middleware\CheckProductSortingCriteria;
 use App\Http\Middleware\CheckLoginFields;
 use App\Http\Middleware\CheckPasswordFields;
 use App\Http\Middleware\CheckPaymentFields;
+use App\Http\Middleware\CheckCreditCardInfo;
 
 
 Route::get('/', 'HomeController')
@@ -43,7 +44,8 @@ Route::post('/mi-cuenta/abonar', 'MyAccountController@credit')
 	->middleware(
 		LoadSession::class,
 		SessionRequired::class,
-		CheckPaymentFields::class
+		CheckPaymentFields::class,
+		CheckCreditCardInfo::class
 	);
 
 Route::get('/mi-cuenta/ver/{accId}/detalles', 'MyAccountController@details')
