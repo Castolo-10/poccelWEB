@@ -9,7 +9,7 @@
     <tbody>
       {% for it in account.details.credit %}
       <tr class="text-center">
-        <td>{{ it.fecha }}</td>
+        <td>{{ it.fecha|date('d/m/Y') }}</td>
         <td>{{ it.cantidad }}</td>
       </tr>
       {% else %}

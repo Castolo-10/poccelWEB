@@ -13,7 +13,7 @@
     <tbody>
       {% for acc in user.account.list %}
       <tr>
-        <td>{{ acc.fecha_compra }}</td>
+        <td>{{ acc.fecha_compra|date('d/m/Y') }}</td>
         <td>{{ acc.saldo }}</td>
         <td>{{ acc.abonado }}</td>
         <td>{{ acc.restante }}</td>
