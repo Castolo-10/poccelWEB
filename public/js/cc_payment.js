@@ -1,4 +1,5 @@
 window.addEventListener('load', onPayClick);
+window.addEventListener('load', onAmountChanged);
 
 $('#payModal').on('show.bs.modal', (event) => {
 	let accountId = $(event.relatedTarget)[0].dataset.account;
@@ -14,6 +15,18 @@ function onPayClick() {
 
     if (pForm.checkValidity()) {
       btnUpdate.form.submit();
+    }
+  });
+}
+
+function onAmountChanged() {
+  let amount = document.getElementById('cc-pay');
+
+  amount.addEventListener('input', function() {
+    if (amount.value <= 0) {
+      amount.setCustomValidity('No');
+    } else {
+      amount.setCustomValidity('');
     }
   });
 }

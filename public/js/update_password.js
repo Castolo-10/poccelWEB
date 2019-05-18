@@ -33,6 +33,6 @@ function validateRepassword() {
     }
   };
 
-  re_pass.addEventListener('change', checkValidity);
-  new_pass.addEventListener('change', checkValidity);
+  re_pass.addEventListener('input', checkValidity);
+  new_pass.addEventListener('input', checkValidity);
 }

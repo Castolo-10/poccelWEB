@@ -57,20 +57,20 @@
             <input class="form-check-input" type="checkbox" name="allow_save" id="cc-save" required>
             <label class="form-check-label" for="cc-save">Autorizo guardar este método de pago</label>
             <div class="invalid-feedback">
-              Autorice para continuar.
+              Marque esta casilla para continuar.
             </div>
           </div>
           <hr/>
           <label for="cc-pay" class="on-top">Cantidad</label>
           <div class="input-group mb-3">
-            <input class="form-control col rounded" type="number" name="amount" id="cc-pay" min=".1" step=".1" pattern="^\d*\.?\d+$" required>
-            <div class="invalid-feedback">
-              Ingrese una cantidad válida.
-            </div>
+            <input class="form-control col rounded" type="text" name="amount" id="cc-pay" pattern="^\d*\.?\d+$" required>
             <div class="input-group-append col">
               <button type="button" class="btn btn-secondary col rounded" id="btn-pay">
                 <i class="fa fa-credit-card mr-2"></i>Abonar
               </button>
+            </div>
+            <div class="invalid-feedback">
+              Ingrese una cantidad válida.
             </div>
           </div>
         </form>
