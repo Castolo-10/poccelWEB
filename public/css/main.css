@@ -191,7 +191,9 @@ a.more::after {
 .price {
   color: #eb0042;
   font-weight: 700;
+  font-size: 1.2em;
 }
+
 
 /* labels */
 #myAccount input[type="text"],
@@ -230,7 +232,8 @@ a.more::after {
 }
 
 .slide-title, .slide-text {
-  
+  background-color: rgba(52, 144, 220, .75);
+  border-radius: .2em;
 }
 
 .table th, .table td {

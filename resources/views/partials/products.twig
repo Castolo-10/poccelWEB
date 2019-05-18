@@ -10,7 +10,7 @@
 
       <img class="card-img-top img-fluid" src="data:image/png;base64, {{ product.img_producto }}" />
       <div class="card-body pb-0 text-center">
-        <h5 class="card-title">{{ product.nombre_producto|e }}</h5>
+        <h5 class="card-title text-truncate">{{ product.nombre_producto|e }}</h5>
       </div>
       <div class="card-footer text-center">
         <p class="card-text price">{{ product.precio_venta|e }}</p>

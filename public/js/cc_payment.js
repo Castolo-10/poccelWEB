@@ -7,26 +7,26 @@ $('#payModal').on('show.bs.modal', (event) => {
 });
 
 function onPayClick() {
-  let btnUpdate = document.getElementById('btn-pay');
+	let btnUpdate = document.getElementById('btn-pay');
 
-  btnUpdate.addEventListener('click', function() {
-    let pForm = document.getElementById('form-payment');
-    pForm.classList.add('was-validated');
+	btnUpdate.addEventListener('click', function() {
+		let pForm = document.getElementById('form-payment');
+		pForm.classList.add('was-validated');
 
-    if (pForm.checkValidity()) {
-      btnUpdate.form.submit();
-    }
-  });
+		if (pForm.checkValidity()) {
+			btnUpdate.form.submit();
+		}
+	});
 }
 
 function onAmountChanged() {
-  let amount = document.getElementById('cc-pay');
+	let amount = document.getElementById('cc-pay');
 
-  amount.addEventListener('input', function() {
-    if (amount.value <= 0) {
-      amount.setCustomValidity('No');
-    } else {
-      amount.setCustomValidity('');
-    }
-  });
+	amount.addEventListener('input', function() {
+		if (amount.value <= 0) {
+			amount.setCustomValidity('No');
+		} else {
+			amount.setCustomValidity('');
+		}
+	});
 }
