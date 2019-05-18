@@ -1,5 +1,5 @@
-window.addEventListener('load', focusSearchOnClick)
-window.addEventListener('load', hideSearchOnLostFocus)
+window.addEventListener('load', focusSearchOnClick);
+window.addEventListener('load', hideSearchOnLostFocus);
 
 function focusSearchOnClick() {
 	let btnSearchBar = document.getElementById('show-search-bar');

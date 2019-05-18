@@ -1,14 +1,17 @@
-<form class="form-grup" action="/mi-cuenta/cambiar-contrasena" method="post">
+<form class="form-grup" action="/mi-cuenta/cambiar-contrasena" method="post" id="form-password">
   {{ csrf_field() }}
   <div class="input-group">
     <div class="input-group-prepend">
       <label for="cr_passwd" class="input-group-text"><i class="fas fa-key"></i></label>
     </div>
     <input name="password" type="password" class="form-control" placeholder="Contraseña actual" id="cr_passwd" required>
+    <div class="invalid-feedback">
+      Ingrese su contraseña actual.
+    </div>
   </div>
 
   <hr/>
   {% include 'partials.form.new_passwd' %}
-  <button type="submit" class="btn btn-primary btn-block">Guardar cambios</button>
+  <button type="button" class="btn btn-primary btn-block" id="btn-update-password">Guardar cambios</button>
 
 </form>

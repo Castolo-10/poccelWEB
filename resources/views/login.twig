@@ -11,3 +11,10 @@
 {% block content %}
   {% include 'partials.form.login' %}
 {% endblock %}
+
+{% block scripts %}
+  {{ parent() }}
+  <script src="{{ asset('js/login.js') }}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/core.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.min.js"></script>
+{% endblock %}
