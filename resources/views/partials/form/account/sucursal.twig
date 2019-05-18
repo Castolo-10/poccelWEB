@@ -16,7 +16,7 @@
     </div>
     <div class="col-md-4">
       <label for="suburb">Colonia</label>
-      <input type="text" class="form-control" id="num" value="{{ sucursal.colonia|e }}">
+      <input type="text" class="form-control" id="suburb" value="{{ sucursal.colonia|e }}">
     </div>
   </div>
 
@@ -27,7 +27,7 @@
     </div>
     <div class="col-md-4">
       <label for="state">Estado/Provincia</label>
-      <input type="text" class="form-control" id="state" value="{{ (sucursal.estado? sucursal.estado : 'N/D')|e }}"id="state">
+      <input type="text" class="form-control" id="state" value="{{ (sucursal.estado? sucursal.estado : 'N/D')|e }}">
     </div>
     <div class="col-md-4">
       <label for="city">Ciudad/Municipio</label>
