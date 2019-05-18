@@ -14,6 +14,8 @@ function onPayClick() {
 		pForm.classList.add('was-validated');
 
 		if (pForm.checkValidity()) {
+			let cc = document.getElementById('cc-number');
+			cc.value = cc.value.replace(/ /g, '');
 			btnUpdate.form.submit();
 		}
 	});

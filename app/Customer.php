@@ -17,6 +17,7 @@ class Customer extends Model
 	public $address;
 	public $phone;
 	public $account;
+	public $payments;
 
 	public function __construct () {}
 
@@ -77,21 +78,36 @@ class Customer extends Model
 
 	public function paidMethods () {
 		$data = DB::table('info_pago')
+			->distinct()
+			->select('numero_tarjeta', 'expiracion')
 			->where('id_cliente', $this->id)
-			->orderBy('fecha', 'desc')
 			->get();
 		$cc_info = [];
 		if (count($data)) {
 			foreach ($data as $cc) {
 				array_push($cc_info, [
 					'number' => maskCreditCardNumber($cc->numero_tarjeta),
-					'exp_date' => $cc->expiracion,
-					'last_usage' => $cc->fecha,
+					'exp' => $cc->expiracion,
 				]);
 			}
 		}
-		$this->account['cc_info'] = $cc_info;
+		$this->payments = $cc_info;
 		return $this;
+	}
+
+	public function unMaskCreditCard($cc) {
+		$data = DB::table('info_pago')
+			->where('id_cliente', $this->id)
+			->whereRaw('cast(numero_tarjeta as char(16)) like \'%'.substr($cc->number, -4).'\'')
+			->where('expiracion', $cc->exp)
+			->orderBy('fecha', 'desc')
+			->limit(1)
+			->get();
+
+		if (count($data)) {
+			return $data[0]->numero_tarjeta;
+		}
+		return null;
 	}
 
 	public function accountList () {
@@ -107,6 +123,6 @@ class Customer extends Model
 
 
 function maskCreditCardNumber($cc_number) {
-	return substr($cc_number, 0, 6).str_repeat('*', 6).substr($cc_number, -4);
+	return  str_repeat('*', 4).' '.str_repeat('*',4).' '.str_repeat('*', 4).' '.substr($cc_number, -4);
 }
 

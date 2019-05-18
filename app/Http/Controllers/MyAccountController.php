@@ -10,7 +10,8 @@ use \App\Account;
 class MyAccountController extends Controller
 {
     public function show(Request $req) {
-        $req->user->accountList();
+        $req->user->accountList()
+            ->paidMethods();
         return view('account');
     }
 
@@ -23,6 +24,8 @@ class MyAccountController extends Controller
     }
 
     public function details(Request $req, $accId) {
+        $req->user->paidMethods();
+        //dd($req->user);
         $acc = Account::get($accId, $req->user->id);
         if ($acc) {
             $acc->loadDetails();
