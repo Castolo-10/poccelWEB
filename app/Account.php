@@ -11,7 +11,7 @@ class Account extends Model
     public $list;
     public $total;
     public $info;
-    public $details = [];
+    public $details;
     public $conn;
 
     private $formatter;
@@ -20,6 +20,7 @@ class Account extends Model
 	public function __construct() {
 		$this->formatter = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
 		$this->curr = 'USD';
+		$this->details = (object) [];
 	}
 
     public static function allByUser ($id) {
@@ -102,8 +103,14 @@ class Account extends Model
 	}
 
 	public function loadDetails() {
+		/* sucursal */
+		$this->details->sucursal = DB::table('sucursal')
+			->where('id_sucursal', substr($this->conn, -1))
+			->limit(1)
+			->get()[0];
+
 		/* abonos */
-		$this->details['credit'] = DB::connection($this->conn)
+		$this->details->credit = DB::connection($this->conn)
 			->table('abono')
 			->where('id_cuenta', $this->info->id_cuenta)
 			->orderBy('fecha', 'desc')
@@ -136,7 +143,7 @@ class Account extends Model
 			$items[$key]->nombre_producto = $it_name[$key]->nombre_producto;
 			}
 
-		$this->details['purchase'] = $items;
+		$this->details->purchase = $items;
 		return $this;
 	}
 
