@@ -16,7 +16,16 @@
     {% include 'partials.messages' %}
 
     <div class="card border-gray">
-      <h5 class="card-header">Información de la cuenta</h5>
+      <h5 class="card-header">
+        <span class="align-middle">Información de la cuenta</span>
+        <button class="btn btn-outline-secondary btn-sm float-right"
+          data-toggle="modal" data-target="#payModal"
+          data-account="{{ account.info.id_cuenta }}"
+          title="Abonar">
+          <i class="fa fa-credit-card"></i>
+          <span class="ml-2 no-xs">Abonar</span>
+        </button>
+      </h5>
       <div class="card-body pt-0">
       {% include 'partials.form.account.details.info' %}
       </div>
@@ -31,12 +40,13 @@
 
     <div class="card border-gray mt-2">
       <h5 class="card-header">
-        <span>Últimos Abonos realizados</span>
+        <span class="align-middle">Últimos abonos</span>
         <button class="btn btn-outline-secondary btn-sm float-right"
           data-toggle="modal" data-target="#payModal"
           data-account="{{ account.info.id_cuenta }}"
           title="Abonar">
-          <i class="fa fa-credit-card mr-2"></i>Abonar
+          <i class="fa fa-credit-card"></i>
+          <span class="ml-2 no-xs">Abonar</span>
         </button>
       </h5>
       <div class="card-body pt-0">

@@ -8,7 +8,7 @@
             <i class="fab fa-cc-mastercard"></i>
             <i class="fab fa-cc-discover"></i>
           </span>
-          <span>Tarjeta de crédito o débito</span>
+          <span>Realizar abono</span>
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -32,11 +32,11 @@
             </div>
           </div>
           <div class="form-row justify-content-between">
-            <div class="form-group col-7 my-0">
+            <div class="form-group col-sm-7 my-0">
               <label for="cc-exp">Fecha de expiración</label>
               <input type="text" class="form-control" name="credit_card_expiration_date" id="cc-exp" placeholder="YY/MM" pattern="\d{2}\/\d{2}" required>
             </div>
-            <div class="form-group col-5">
+            <div class="form-group col-sm-5">
               <label for="cc-code">Código de seguridad</label>
               <input type="password" class="form-control" name="credit_card_security_code" placeholder="3 dígitos" id="cc-code" pattern="\d{3}" required>
             </div>
@@ -46,7 +46,7 @@
             <label class="form-check-label" for="cc-save">Autorizo guardar este método de pago</label>
           </div>
           <hr/>
-          <label for="cc-pay" class="on-top">Cantidad a abonar</label>
+          <label for="cc-pay" class="on-top">Cantidad</label>
           <div class="input-group mb-3">
             <input class="form-control col rounded" type="number" name="amount" id="cc-pay" min=".1" step=".1" pattern="^\d*\.?\d+$" required>
             <div class="input-group-append col">

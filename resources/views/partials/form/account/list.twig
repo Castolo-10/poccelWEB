@@ -3,10 +3,10 @@
   <table class="table table-hover">
     <thead>
       <tr>
-        <th scope="col">Fecha de Compra</th>
-        <th scope="col">Saldo</th>
-        <th scope="col">Abonos</th>
-        <th scope="col">Restan</th>
+        <th class="align-middle" scope="col">Fecha de Compra</th>
+        <th class="align-middle" scope="col">Saldo</th>
+        <th class="align-middle" scope="col">Abonos</th>
+        <th class="align-middle" scope="col">Restan</th>
         <th></th>
       </tr>
     </thead>
@@ -32,8 +32,8 @@
         </td>
       </tr>
       {% else %}
-      <tr class="col-12 text-center">
-        <td colspan="5">No debe ningún artículo</td>
+      <tr>
+        <td colspan="5">No tiene adeudos</td>
       </tr>
       {% endfor %}
     </tbody>

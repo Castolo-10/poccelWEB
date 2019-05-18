@@ -177,7 +177,7 @@ a.more::after {
   .item-container .card img {
     height: auto;
   }
-  .poccel-navbar-text {
+  .poccel-navbar-text, .no-xs {
     display: none;
   }
 }
@@ -231,6 +231,11 @@ a.more::after {
 
 .slide-title, .slide-text {
   
+}
+
+.table th, .table td {
+  text-align: center;
+  vertical-align: middle;
 }
 
 /* quitar estilos de input[type="number"] */
