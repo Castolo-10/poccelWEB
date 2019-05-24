@@ -42,6 +42,12 @@
       <h5 class="card-header">Productos adquiridos</h5>
       <div class="card-body pt-0">
       {% include 'partials.form.account.details.purchase' %}
+        <div class="form-row justify-content-end">
+          <div class="col-sm-4">
+            <label for="iva">IVA Total (16%)</label>
+            <input id="iva" type="text" class="form-control" value="{{ account.info.iva }}" disabled="disabled">
+          </div>
+        </div>
       </div>
     </div>
 

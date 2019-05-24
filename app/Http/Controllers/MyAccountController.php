@@ -11,7 +11,7 @@ class MyAccountController extends Controller
 {
     public function show(Request $req) {
         $req->user->accountList()
-            ->paidMethods();
+            ->payMethods();
         return view('account');
     }
 
@@ -24,8 +24,7 @@ class MyAccountController extends Controller
     }
 
     public function details(Request $req, $accId) {
-        $req->user->paidMethods();
-        //dd($req->user);
+        $req->user->payMethods();
         $acc = Account::get($accId, $req->user->id);
         if ($acc) {
             $acc->loadDetails();
@@ -34,7 +33,7 @@ class MyAccountController extends Controller
             ]);
         }
 
-        return redirect()->back()->withErrors('Account doesn\'t exists!');
+        return redirect()->back()->withErrors('Account "'.$accId.'" doesn\'t exists!');
     }
 
     public function credit(Request $req) {

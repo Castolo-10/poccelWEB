@@ -1,20 +1,22 @@
 <form>
   <fieldset disabled="disabled">
     
-    <div class="form-row">
-      <div class="col-md-4 col-sm-12">
+    <div class="form-row justify-content-end">
+      <div class="col-12">
         <label for="fecha-compra">Fecha de Compra</label>
         <input type="date" class="form-control" id="fecha-compra" value="{{ account.info.fecha_compra | e }}">
       </div>
-      <div class="col-md-3 col-sm-4">
+    </div>
+    <div class="form-row">
+      <div class="col-sm-4">
         <label for="saldo">Saldo</label>
         <input type="text" class="form-control" id="saldo" value="{{ account.info.saldo | e }}">
       </div>
-      <div class="col-md-2 col-sm-4">
+      <div class="col-sm-4">
         <label for="abonado">Abonos</label>
         <input type="text" class="form-control" id="abonado" value="{{ account.info.abonado | e }}">
       </div>
-      <div class="col-md-3 col-sm-4">
+      <div class="col-sm-4">
         <label for="resto">Restan</label>
         <input type="text" class="form-control" id="resto" value="{{ account.info.restante | e }}">
       </div>
