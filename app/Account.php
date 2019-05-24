@@ -58,7 +58,8 @@ class Account extends Model
 				Account::FIELD['all'],
 				DB::raw(Sale::FIELD['date'].' AS fecha_compra'),
 				DB::raw('SUM('.Payment::FIELD['amount'].') AS abonado'),
-				DB::raw(Account::FIELD['balance'].'-SUM('.Payment::FIELD['amount'].') AS restante'))
+				DB::raw(Account::FIELD['balance'].'-SUM('.Payment::FIELD['amount'].') AS restante'),
+				DB::raw(Account::FIELD['balance'].'/1.16*.16 AS iva'))
 			->groupBy(Account::FIELD['id'], Sale::FIELD['date'])
 			->limit(1)
 			->get();
