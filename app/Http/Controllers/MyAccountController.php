@@ -41,8 +41,8 @@ class MyAccountController extends Controller
         $amount = Input::get('amount');
         $ccInfo = (object)[
             'customer' => $req->user->id,
-            'cc_number' => Input::get('credit_card_number'),
-            'cc_exp' => Input::get('credit_card_expiration_date'),
+            'number' => Input::get('credit_card_number'),
+            'exp' => Input::get('credit_card_expiration_date'),
         ];
 
         $acc = Account::get($accId, $req->user->id);

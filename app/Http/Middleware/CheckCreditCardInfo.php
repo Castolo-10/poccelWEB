@@ -17,14 +17,14 @@ class CheckCreditCardInfo
     public function handle($request, Closure $next)
     {
         $exp = Input::get('credit_card_expiration_date');
-
         $cc = Input::get('credit_card_number');
 
         if ($cc[0] == '*') {
-            $cc = $request->user->unMaskCreditCard((object)[
+            $cc = \App\PayMethod::unMask((object)[
                 'number' => $cc,
                 'exp' => $exp,
-            ]);
+                'customer' => $request->user->id
+            ]); 
             if (!$cc) return redirect()->back()->withErrors('You have entered an invalid credit card!');
 
             $data = $request->all();

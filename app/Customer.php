@@ -110,23 +110,8 @@ class Customer extends Model
 	}
 
 	public function payMethods () {
-		$this->account['cc_info'] = PayMethod::get($this->id);
+		$this->pay_methods = PayMethod::get($this->id, true);
 		return $this;
-	}
-
-	public function unMaskCreditCard($cc) {
-		$data = DB::table('info_pago')
-			->where('id_cliente', $this->id)
-			->whereRaw('cast(numero_tarjeta as char(16)) like \'%'.substr($cc->number, -4).'\'')
-			->where('expiracion', $cc->exp)
-			->orderBy('fecha', 'desc')
-			->limit(1)
-			->get();
-
-		if (count($data)) {
-			return $data[0]->numero_tarjeta;
-		}
-		return null;
 	}
 
 	public function accountList () {

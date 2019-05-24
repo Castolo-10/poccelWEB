@@ -19,7 +19,7 @@
         <form action="/mi-cuenta/abonar" method="post" id="form-payment">
           {{ csrf_field() }}
           <input type="hidden" name="account_id" id="acc-id">
-          <!--div class="form-row">
+          <div class="form-row">
             <div class="form-group col-12 my-0">
               <label for="cc-titular">Nombre del titular</label>
               <input type="text" class="form-control" name="credit_card_titular" id="cc-titular" required>
@@ -27,14 +27,14 @@
                 Ingrese el nombre del titular de la tarjeta.
               </div>
             </div>
-          </div-->
+          </div>
 
           <div class="form-row">
             <div class="form-group col-12 my-0">
               <label for="cc-number">Número de tarjeta</label>
               <input list="credit-cards" class="form-control" id="cc-number" name="credit_card_number" pattern="^((((\d{4} ){3})|(\*{4} ){3})\d{4})|\d{16}|(\*{12}\d{4})$" placeholder="0000 0000 0000 0000" required>
               <datalist id="credit-cards">
-                {% for cc in app.request.user.payments %}
+                {% for cc in app.request.user.pay_methods %}
                 <option value="{{ cc.number }}">{{ cc.exp }}</option>
                 {% endfor %}
               </datalist>
@@ -46,7 +46,9 @@
           <div class="form-row justify-content-between">
             <div class="form-group col-sm-7 my-0">
               <label for="cc-exp">Fecha de expiración</label>
-              <input type="text" class="form-control" name="credit_card_expiration_date" id="cc-exp" placeholder="MM/YY" pattern="((0[1-9])|(1[012]))\/\d{2}" required>
+              <input list="exp-dates" class="form-control" name="credit_card_expiration_date" id="cc-exp" placeholder="MM/YY" pattern="((0[1-9])|(1[012]))\/\d{2}" required>
+              <datalist id="exp-dates">
+              </datalist>
               <div class="invalid-feedback">
                 El formato de fecha no es válido.
               </div>
