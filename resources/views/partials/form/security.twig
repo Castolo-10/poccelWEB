@@ -2,9 +2,9 @@
   {{ csrf_field() }}
   <div class="input-group">
     <div class="input-group-prepend">
-      <label for="cr_passwd" class="input-group-text"><i class="fas fa-key"></i></label>
+      <label for="cr_passwd" class="input-group-text required"><i class="fas fa-key"></i></label>
     </div>
-    <input name="password" type="password" class="form-control" placeholder="Contraseña actual" id="cr_passwd" required>
+    <input name="password" type="password" class="form-control rounded-right" placeholder="Contraseña actual" id="cr_passwd" required>
     <div class="invalid-feedback">
       Ingrese su contraseña actual.
     </div>

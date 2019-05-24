@@ -21,7 +21,7 @@
           <input type="hidden" name="account_id" id="acc-id">
           <div class="form-row">
             <div class="form-group col-12 my-0">
-              <label for="cc-titular">Nombre del titular</label>
+              <label class="required" for="cc-titular">Nombre del titular</label>
               <input type="text" class="form-control" name="credit_card_titular" id="cc-titular" required>
               <div class="invalid-feedback">
                 Ingrese el nombre del titular de la tarjeta.
@@ -31,7 +31,7 @@
 
           <div class="form-row">
             <div class="form-group col-12 my-0">
-              <label for="cc-number">Número de tarjeta</label>
+              <label class="required" for="cc-number">Número de tarjeta</label>
               <input list="credit-cards" class="form-control" id="cc-number" name="credit_card_number" pattern="^((((\d{4} ){3})|(\*{4} ){3})\d{4})|\d{16}|(\*{12}\d{4})$" placeholder="0000 0000 0000 0000" required>
               <datalist id="credit-cards">
                 {% for cc in app.request.user.pay_methods %}
@@ -45,7 +45,7 @@
           </div>
           <div class="form-row justify-content-between">
             <div class="form-group col-sm-7 my-0">
-              <label for="cc-exp">Fecha de expiración</label>
+              <label class="required" for="cc-exp">Fecha de expiración</label>
               <input list="exp-dates" class="form-control" name="credit_card_expiration_date" id="cc-exp" placeholder="MM/YY" pattern="((0[1-9])|(1[012]))\/\d{2}" required>
               <datalist id="exp-dates">
               </datalist>
@@ -54,7 +54,7 @@
               </div>
             </div>
             <div class="form-group col-sm-5">
-              <label for="cc-code">Código de seguridad</label>
+              <label class="required" for="cc-code">Código de seguridad</label>
               <input type="password" class="form-control" name="credit_card_security_code" placeholder="3 dígitos" id="cc-code" pattern="\d{3}" required>
               <div class="invalid-feedback">
                 No es un código de seguridad válido.
@@ -63,20 +63,18 @@
           </div>
           <div class="form-check">
             <input class="form-check-input" type="checkbox" name="allow_save" id="cc-save" required>
-            <label class="form-check-label" for="cc-save">Autorizo guardar este método de pago</label>
+            <label class="form-check-label required" for="cc-save">Autorizo guardar este método de pago</label>
             <div class="invalid-feedback">
               Marque esta casilla para continuar.
             </div>
           </div>
           <hr/>
-          <label for="cc-pay" class="on-top">Cantidad</label>
-          <div class="input-group mb-3">
-            <input class="form-control col rounded" type="text" name="amount" id="cc-pay" pattern="^\d*\.?\d+$" required>
-            <div class="input-group-append col">
-              <button type="button" class="btn btn-secondary col rounded" id="btn-pay">
+          <label for="cc-pay" class="required on-top">Cantidad</label>
+          <div class="form-inline justify-content-between mb-3">
+            <input class="form-control col-sm-5" type="text" name="amount" id="cc-pay" pattern="^\d*\.?\d+$" required>
+            <button type="button" class="btn btn-secondary col-sm-6 mt-3 mt-sm-0" id="btn-pay">
                 <i class="fa fa-credit-card mr-2"></i>Abonar
-              </button>
-            </div>
+             </button>
             <div class="invalid-feedback">
               Ingrese una cantidad válida.
             </div>

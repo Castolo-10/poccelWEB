@@ -199,9 +199,11 @@ a.more::after {
 #myAccount input[type="text"],
 #myAccount input[type="date"],
 #myAccount input[type="month"],
-.catalog-filters input
+.catalog-filters input,
+.catalog-filters select
 {
   padding-top: .6em;
+  background-color: transparent;
 }
 
 .dummy-label {
@@ -250,4 +252,11 @@ input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+label.required::after {
+  content: "*";
+  color: #e32;
+  margin-left: .3em;
+  text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #49ff18, 0 0 30px #49FF18, 0 0 40px #49FF18, 0 0 55px #49FF18, 0 0 75px #49ff18;
 }
