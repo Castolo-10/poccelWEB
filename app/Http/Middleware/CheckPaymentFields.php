@@ -17,7 +17,7 @@ class CheckPaymentFields
     public function handle($request, Closure $next)
     {
         $request->validate([
-            'credit_card_titular' => 'max:100',
+            'credit_card_titular' => 'required|max:100',
             'credit_card_number' => ['required', 'size:16', 'regex:/(\d{16})|([*]{12}\d{4})/'],
             'credit_card_expiration_date' => 'required|size:5|date_format:m/y',
             'credit_card_security_code' => 'required|size:3|regex:/\d{3}/',
