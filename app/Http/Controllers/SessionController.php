@@ -4,31 +4,37 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Input;
 use \App\Customer;
 
 class SessionController extends Controller
 {
-    function login(Request $req) {
+	function login(Request $req) {
 
-    	$email = $req->input()['email'];
-    	$password = $req->input()['password'];
+		$email = Input::get('email');
+		$password = Input::get('password');
+		$remember = Input::get('remember', '');
 
-        try {
-            $userId = Customer::attemp($email, $password);
-        } catch(QueryException $e) {
-            $userId = 0;
-        }
+		try {
+			$userId = Customer::attemp($email, $password);
+		} catch(QueryException $e) {
+			$userId = 0;
+		}
 
-    	if ($userId) {
-    		\Cookie::queue(\Cookie::make('session', $userId));
+		if ($userId) {
+			if ($remember) {
+				\Cookie::queue(\Cookie::forever('session', $userId));
+			} else {
+				\Cookie::queue(\Cookie::make('session', $userId));
+			}
 			return redirect('');
-    	}
+		}
 
 		return redirect()->back()->withErrors('Invalid email or password');
-    }
+	}
 
-    function logout() {
-    	\Cookie::queue(\Cookie::forget('session'));
+	function logout() {
+		\Cookie::queue(\Cookie::forget('session'));
 		return redirect('');
-    }
+	}
 }
