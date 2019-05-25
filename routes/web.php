@@ -12,6 +12,7 @@
 */
 
 use App\Http\Middleware\LoadSession;
+use App\Http\Middleware\RestrictSession;
 use App\Http\Middleware\SessionRequired;
 use App\Http\Middleware\CheckPageSize;
 use App\Http\Middleware\CheckProductSortingCriteria;
@@ -26,7 +27,10 @@ Route::get('/', 'HomeController')
 
 Route::get('/login', function () {
     return View::make('login');
-}); // restrict session?
+})->middleware(
+	LoadSession::class,
+	RestrictSession::class
+);
 
 Route::post('/login', 'SessionController@login')
 	->middleware(CheckLoginFields::class);
@@ -39,6 +43,10 @@ Route::get('/catalogo', 'CatalogController@paginate')
 		CheckPageSize::class,
 		CheckProductSortingCriteria::class
 	);
+
+Route::get('/producto/{id}/{name?}', 'CatalogController@stock')
+	->where('id', '[0-9]+')
+	->middleware(LoadSession::class);
 
 Route::post('/mi-cuenta/abonar', 'MyAccountController@credit')
 	->middleware(

@@ -1,0 +1,83 @@
+{% extends "base" %}
+
+{% block title %}Disponibilidad{% endblock %}
+
+{% block content %}
+  <div class="col-sm-12 col-md-10 col-lg-8 m-auto" id="inStock">
+
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+        <li class="breadcrumb-item"><a href="/catalogo">Catalogo</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Disponibilidad</li>
+      </ol>
+    </nav>
+
+    {% include 'partials.messages' %}
+
+    <div class="card border-gray">
+      <div class="card-body">
+      
+        <div class="row">
+          <div class="col-sm-6">
+            <img class="img-fluid" src="data:image/png;base64,{{ product.img_producto }}">
+          </div>
+          <div class="col-sm-6 text-center text-sm-left mt-3">
+            <h5 class="mb-2" id="pName">{{ product.nombre_producto }}</h5>
+            <hr/>
+            <p class="my-2"><span class="price">{{ product.precio_venta }}</span></p>
+            <hr/>
+            <p class="my-2"><span class="text-muted">{{ product.descripción }}</span></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="card border-gray mt-3">
+      <div class="card-header"><h5 class="d-inline-block">Disponibilidad</h5>
+        {% if product.stock| length == 0 %}
+          <span class="badge badge-pill badge-danger px-3">Agotado</span>
+        {% elseif product.stock| length == 1 %}
+          <span class="badge badge-pill badge-warning px-3">Limitado</span>
+        {% else %}
+          <span class="badge badge-pill badge-success px-3">Disponible</span>
+        {% endif %}
+      </div>
+      <div class="card-body">
+        <div class="form-row table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th colspan="2" class="align-middle" scope="col">Sucursal</th>
+                <th class="align-middle" scope="col">Existencia</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for sucursal in product.stock %}
+              <tr>
+                <td colspan="2">
+                  <p>{{ sucursal.nombre }}
+                    <span class="text-muted">
+                      <strong>Domicilio</strong>: {{ sucursal.calle }} #{{ sucursal.num_dom }}; 
+                      <strong>Colonia</strong>: {{ sucursal.colonia }}; 
+                      <strong>Municipio</strong>: {{ sucursal.ciudad }}; 
+                      <strong>Codigo Postal</strong>: {{ sucursal.cp }}
+                    </span>
+                  </p>
+                </td>
+                <td>{{ sucursal.stock }}</td>
+              </tr>
+              {% else %}
+              <tr>
+                <td colspan="3">Producto no disponible</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+{% endblock %}

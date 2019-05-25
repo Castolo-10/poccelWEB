@@ -138,7 +138,8 @@ a.more::after {
 }
 
 .item-container .card:hover,
-.modal .img-fluid:hover
+.modal .img-fluid:hover,
+#inStock .img-fluid:hover
 {
   transition: box-shadow ease .2s;
   -webkit-transition: box-shadow ease .2s;
@@ -152,7 +153,9 @@ a.more::after {
   border-bottom: 1px solid #ddd;
 }
 
-.modal .img-fluid {
+.modal .img-fluid,
+#inStock .img-fluid
+{
   width: 100%;
   height: auto;
   margin-bottom: 1em;
@@ -259,4 +262,9 @@ label.required::after {
   color: #e32;
   margin-left: .3em;
   text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #49ff18, 0 0 30px #49FF18, 0 0 40px #49FF18, 0 0 55px #49FF18, 0 0 75px #49ff18;
+}
+
+#inStock .text-muted {
+  font-size: .7em;
+  text-transform: uppercase;
 }

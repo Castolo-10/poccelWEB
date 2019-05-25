@@ -12,6 +12,11 @@ function loadModalInfo (node) {
 	document.getElementById('pModalPrice').textContent = node.dataset.price;
 	document.getElementById('pModalDescription').textContent = node.dataset.description;
 	document.getElementById('pModalImage').src = node_card.children[0].src;
+	document.getElementById('dispLink').href = parseUrl(node.dataset.productId, node.dataset.productName);
+}
+
+function parseUrl (id, name) {
+	return '/producto/'+id+'/'+encodeURIComponent(name.replace(/ +/g, '-'));
 }
 
 function toggleOrderIcon () {

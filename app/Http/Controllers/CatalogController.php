@@ -22,8 +22,15 @@ class CatalogController extends Controller
             'nPageSize' => env('N_PAGE_SIZE'),
             'sort' => $req->sort,
             'search' => $search,
-        ]
-    ])->withQuery($pageSize);
+        ]])->withQuery($pageSize);
 
+    }
+
+    function stock(Request $req, $id, $name=null) {
+        $product = Product::get($id);
+        if ($product) {
+            return view('stock', ['product' => $product->inStock()]);
+        }
+        return redirect()->back()->withErrors('Product doesn\'t exists!');
     }
 }

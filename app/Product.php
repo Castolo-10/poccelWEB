@@ -7,6 +7,7 @@ use DB;
 
 class Product extends Model
 {
+    public $stock = [];
 
     private const TABLE = 'producto';
     private const FIELD = [
@@ -28,6 +29,14 @@ class Product extends Model
         'img' => Product::IMG_TABLE.'.string_img'
     ];
 
+    public function __construct($obj) {
+        $this->id_producto = $obj->id_producto;
+        $this->nombre_producto = $obj->nombre_producto;
+        $this->descripcion = $obj->descripcion;
+        $this->precio_venta = $obj->precio_venta;
+        $this->img_producto = $obj->img_producto;
+    }
+
     public static function paginate ($pageSize, $q=null, $sort=null) {
     	return DB::table(Product::TABLE)
         ->join(Product::IMG_TABLE, Product::FIELD['id'], '=', Product::IMG_FIELD['product'])
@@ -41,6 +50,32 @@ class Product extends Model
             return $query->orderBy(Product::SORTING_CRITERIA[$sort['by']], $sort['order']);
             })
         ->paginate($pageSize);
+    }
+
+    public static function get ($id) {
+        $data = DB::table(Product::TABLE)
+            ->join(Product::IMG_TABLE, Product::FIELD['id'], '=', Product::IMG_FIELD['product'])
+            ->select(Product::FIELD['all'],
+                DB::raw('convert_from('.Product::IMG_FIELD['img'].", 'UTF8') as img_producto"))
+            ->where(Product::FIELD['id'], $id)
+            ->limit(1)
+            ->get();
+        if (count($data)) {
+            return new Product($data[0]);
+        }
+        return null;
+    }
+
+    public function inStock () {
+        $s1 = Sucursal::get(1)->inStock($this->id_producto);
+        $s2 = Sucursal::get(2)->inStock($this->id_producto);
+        if ($s1->stock > 0) {
+            array_push($this->stock, $s1);
+        }
+        if ($s2->stock > 0) {
+            array_push($this->stock, $s2);
+        }
+        return $this;
     }
 
     public static function whereIn ($arrayIds, $onlyName=false) {
