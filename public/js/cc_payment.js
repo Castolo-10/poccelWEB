@@ -30,7 +30,6 @@ function onCCInputChange() {
 		let expDates = document.getElementById('exp-dates');
 		removeChilds(expDates);
 		Array.prototype.map.call(options, (opt) => {
-			console.log(cc.value, opt.value);
 			if (cc.value.replace(/ /g, '') == opt.value) {
 				let exp = document.createElement('option');
 				exp.value = opt.text;

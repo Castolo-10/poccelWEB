@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\QueryException;
 use NumberFormatter;
 use DB;
 
@@ -32,10 +33,19 @@ class Account extends Model
 	}
 
     public static function getAllByUser ($id) {
-		$data_sucursal_1 = Account::getAllBySucursal(
-			env('DB_CONNECTION_SUCURSAL_1'), $id);
-		$data_sucursal_2 = Account::getAllBySucursal(
-			env('DB_CONNECTION_SUCURSAL_2'), $id);
+    	try {
+			$data_sucursal_1 = Account::getAllBySucursal(
+				env('DB_CONNECTION_SUCURSAL_1'), $id);
+		} catch (QueryException $e) {
+			$data_sucursal_1 = [];
+		}
+
+		try {
+			$data_sucursal_2 = Account::getAllBySucursal(
+				env('DB_CONNECTION_SUCURSAL_2'), $id);
+		} catch (QueryException $e) {
+			$data_sucursal_2 = [];
+		}
 		
 		$acc = new Account();
 		$acc->list = array_merge($data_sucursal_1, $data_sucursal_2);
@@ -82,15 +92,19 @@ class Account extends Model
 			
 			DB::connection($this->conn)->beginTransaction();
 			DB::beginTransaction();
-			
-			$payment_register = $payment->save_($this->conn);
-			$cc_register = $payMethod->save_();
 
-			if ($payment_register && $cc_register) {
-				DB::connection($this->conn)->commit();
-				DB::commit();
-				return true;
-			}
+			try {
+				$payment_register = $payment->save_($this->conn);
+				$cc_register = $payMethod->save_();
+
+				if ($payment_register && $cc_register) {
+					DB::connection($this->conn)->commit();
+					DB::commit();
+					return true;
+				}
+
+			} catch (QueryException $e) {}
+
 			DB::connection($this->conn)->rollback();
 			DB::rollback();
 		}

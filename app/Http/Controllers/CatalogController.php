@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use \App\Product;
@@ -12,25 +13,40 @@ class CatalogController extends Controller
     	$pageSize = Input::get('pageSize', env('DEFAULT_PAGE_SIZE'));
         $search = Input::get('s', null);
 
-        $products = Product::paginate($pageSize, $search, $req->sort);
-        $products->appends(Input::except('page'));
-
-    return view('catalog', [
-        'products' => $products,
-        'options' => [
+        $options = [
             'step' => env('DEFAULT_PAGE_SIZE'),
             'nPageSize' => env('N_PAGE_SIZE'),
             'sort' => $req->sort,
             'search' => $search,
-        ]])->withQuery($pageSize);
+        ];
+
+        try {
+            $products = Product::paginate($pageSize, $search, $req->sort);
+            $products->appends(Input::except('page'));
+        } catch (QueryException $e) {
+            return view('catalog', [
+                'options' => $options
+            ])->withErrors('Unable to connect with DataBase');
+        }
+
+        return view('catalog', [
+            'products' => $products,
+            'options' => $options,
+        ])->withQuery($pageSize);
 
     }
 
     function stock(Request $req, $id, $name=null) {
-        $product = Product::get($id);
-        if ($product) {
-            return view('stock', ['product' => $product->inStock()]);
+        try {
+            $product = Product::get($id);
+            if ($product) $product->inStock();
+        } catch (QueryException $e) {
+            return view('stock')->withErrors('Unable to connect with DataBase');
         }
-        return redirect()->back()->withErrors('Product doesn\'t exists!');
+
+        if ($product) {
+            return view('stock', ['product' => $product]);
+        }
+        return redirect('/catalogo')->withErrors('Product doesn\'t exists!');
     }
 }

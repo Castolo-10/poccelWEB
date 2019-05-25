@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 use \App\Customer;
 
 class SessionController extends Controller
@@ -12,7 +13,11 @@ class SessionController extends Controller
     	$email = $req->input()['email'];
     	$password = $req->input()['password'];
 
-    	$userId = Customer::attemp($email, $password);
+        try {
+            $userId = Customer::attemp($email, $password);
+        } catch(QueryException $e) {
+            $userId = 0;
+        }
 
     	if ($userId) {
     		\Cookie::queue(\Cookie::make('session', $userId));

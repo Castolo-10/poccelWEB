@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\QueryException;
 use DB;
 
 class Product extends Model
@@ -67,8 +68,18 @@ class Product extends Model
     }
 
     public function inStock () {
-        $s1 = Sucursal::get(1)->inStock($this->id_producto);
-        $s2 = Sucursal::get(2)->inStock($this->id_producto);
+        try {
+            $s1 = Sucursal::get(1)->inStock($this->id_producto);
+        } catch (QueryException $e) {
+            $s1 = (object)['stock' => 0];
+        }
+        
+        try {
+            $s2 = Sucursal::get(2)->inStock($this->id_producto);
+        } catch (QueryException $e) {
+            $s2 = (object)['stock' => 0];
+        }
+
         if ($s1->stock > 0) {
             array_push($this->stock, $s1);
         }

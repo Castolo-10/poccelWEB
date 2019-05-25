@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 use \App\Product;
 
 class ItemWrapper {
@@ -15,6 +16,7 @@ class ItemWrapper {
 class HomeController extends Controller
 {
 	public function __invoke(Request $req) {
+		$extra_msgs = [];
 		$slides = [
 			[
 				'icon' => 'far fa-star',
@@ -36,7 +38,12 @@ class HomeController extends Controller
 			]
 		];
 
-		$products = Product::random(4);
+		try {
+			$products = Product::random(4);
+		} catch (QueryException $e) {
+			$products = [];
+			$extra_msgs = 'Unable to connect with DataBase';
+		}
 		
 		$wrap = new ItemWrapper();
 		$wrap->it = $products;
@@ -44,6 +51,6 @@ class HomeController extends Controller
 		return view('home', [
 			'products' => $wrap,
 			'slides' => $slides,
-		]);
+		])->withErrors($extra_msgs);
 	}
 }

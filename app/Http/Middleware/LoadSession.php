@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use \App\Customer;
+use Illuminate\Database\QueryException;
 use Closure;
 
 class LoadSession
@@ -19,7 +20,9 @@ class LoadSession
         $userId = \Cookie::get('session', '');
         $user = null;
         if ($userId) {
-            $user = Customer::get($userId);
+            try {
+                $user = Customer::get($userId);
+            } catch(QueryException $e) {}
         }
         $request->user = $user;
         return $next($request);
