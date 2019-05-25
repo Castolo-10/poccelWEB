@@ -128,9 +128,6 @@ a.more::after {
 }
 
 /* catalogo */
-.item-container .card-title {
-  
-}
 
 .item-container .card {
   margin: .5em 0;
@@ -209,9 +206,7 @@ a.more::after {
   background-color: transparent;
 }
 
-.dummy-label {
-  z-index: -1;
-}
+.dummy-label { z-index: -1; }
 
 #myAccount label:not(.form-check-label):not(.input-group-text),
 .catalog-filters label:not(.dummy-label)
@@ -275,6 +270,6 @@ label.required::after {
   color: #ced4da;
 }
 
-#cc-list:hover {
-  color: gray;
-}
+#cc-list:hover { color: gray; }
+
+#cc-number { z-index: 3; }
