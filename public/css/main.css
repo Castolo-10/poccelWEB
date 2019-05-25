@@ -268,3 +268,13 @@ label.required::after {
   font-size: .7em;
   text-transform: uppercase;
 }
+
+#cc-list {
+  background-color: transparent;
+  border: 1px solid #ced4da;
+  color: #ced4da;
+}
+
+#cc-list:hover {
+  color: gray;
+}

@@ -31,13 +31,29 @@
 
           <div class="form-row">
             <div class="form-group col-12 my-0">
-              <label class="required" for="cc-number">Número de tarjeta</label>
-              <input list="credit-cards" class="form-control" id="cc-number" name="credit_card_number" pattern="^((((\d{4} ){3})|(\*{4} ){3})\d{4})|\d{16}|(\*{12}\d{4})$" placeholder="0000 0000 0000 0000" autocomplete="off" required>
-              <datalist id="credit-cards">
-                {% for cc in app.request.user.pay_methods %}
-                <option value="{{ cc.number }}">{{ cc.exp }}</option>
-                {% endfor %}
-              </datalist>
+              <label class="required on-top" for="cc-number">Número de tarjeta</label>
+              <div class="input-group">
+                <input type="text" class="form-control" id="cc-number" name="credit_card_number" pattern="^((((\d{4} ){3})|(\*{4} ){3})\d{4})|\d{16}|(\*{12}\d{4})$" placeholder="0000 0000 0000 0000" autocomplete="off" required>
+
+                <div class="input-group-append">
+                  <button type="button" id="cc-list" class="btn dropdown-toggle dropdown-toggle-split"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  </button>
+                  <div class="dropdown-menu" id="cc-options">
+                    {% for cc in app.request.user.pay_methods %}
+                    <button type="button" class="dropdown-item"
+                      data-cc="{{ cc.number }}" data-exp="{{ cc.exp }}">
+                      <p class="justify-content-between">
+                        <span>{{ cc.number }}</span>
+                        <small class="text-muted">({{ cc.exp }})</small>
+                      </p>
+                    </button>
+                    {% endfor %}
+                  </div>
+                </div>
+                
+              </div>
+
               <div class="invalid-feedback">
                 El número de tarjeta no es válido.
               </div>
@@ -46,9 +62,7 @@
           <div class="form-row justify-content-between">
             <div class="form-group col-sm-7 my-0">
               <label class="required" for="cc-exp">Fecha de expiración</label>
-              <input list="exp-dates" class="form-control" name="credit_card_expiration_date" id="cc-exp" placeholder="MM/YY" pattern="((0[1-9])|(1[012]))\/\d{2}" autocomplete="off" required>
-              <datalist id="exp-dates">
-              </datalist>
+              <input type="text" class="form-control" name="credit_card_expiration_date" id="cc-exp" placeholder="MM/YY" pattern="((0[1-9])|(1[012]))\/\d{2}" autocomplete="off" required>
               <div class="invalid-feedback">
                 El formato de fecha no es válido.
               </div>

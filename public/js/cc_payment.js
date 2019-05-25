@@ -1,6 +1,6 @@
 window.addEventListener('load', onPayClick);
 window.addEventListener('load', onAmountChanged);
-window.addEventListener('load', onCCInputChange);
+window.addEventListener('load', onCreditCardClicked);
 
 $('#payModal').on('show.bs.modal', (event) => {
 	let accountId = $(event.relatedTarget)[0].dataset.account;
@@ -22,26 +22,17 @@ function onPayClick() {
 	});
 }
 
-function onCCInputChange() {
+function onCreditCardClicked() {
 	let cc = document.getElementById('cc-number');
-
-	cc.addEventListener('input', () => {
-		let options = document.querySelectorAll('#credit-cards option');
-		let expDates = document.getElementById('exp-dates');
-		removeChilds(expDates);
-		Array.prototype.map.call(options, (opt) => {
-			if (cc.value.replace(/ /g, '') == opt.value) {
-				let exp = document.createElement('option');
-				exp.value = opt.text;
-				expDates.appendChild(exp);
-			}
+	let exp = document.getElementById('cc-exp');
+	let btnCC = document.querySelector('#cc-options').children;
+	
+	Array.prototype.map.call(btnCC, (opt) => {
+		opt.addEventListener('click', function() {
+			cc.value = this.dataset.cc;
+		exp.value = this.dataset.exp;
 		});
 	});
-}
-
-function removeChilds(node) {
-	while (node.hasChildNodes())
-		node.removeChild(node.lastChild)
 }
 
 function onAmountChanged() {
